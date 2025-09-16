@@ -20,3 +20,5 @@ Con esta imagen totalmente en negro creada, el siguiente paso consiste en pintar
 En un primer intento, se ha hecho utilizando una estrategia de ***fuerza bruta***: se pintaba manualmente cada cuadro indicando sus coordenadas. Sin embargo, este método resultó ser poco práctico ya que obligaba a definir individualmente los 32 cuadros blancos.  
 
 Para optimizar el proceso, se ha optado por ***dos bucles anidados***. En cada posición, se comprueba si la suma de los índices de fila y columna es par. Si esto ocurre, corresponderá a un cuadro blanco en esa posición, asignándole el valor **255**.
+
+Finalmente, con la función **`plt.imshow()`** de librería **Matplotlib**, se muestra la imagen generada.
