@@ -103,7 +103,7 @@ Para llevar a cabo esta tarea, se utilizó una imagen con una gran variedad de c
   <img src="https://github.com/user-attachments/assets/16a632b2-da61-44b2-b673-20500fae632f" width="50%">
 </div>
 
-En primer lugar, se lee la imagen en color con la función `cv2.imread()` de OpenCV y posteriormente se convierte a escalas de grises con `cv2.cvtColor()`. Esto permitirá calcular los valores mínimo y máximo de intensidad, junto con sus posiciones dentro de la imagen, utilizando la función `cv2.minMaxLoc()`.  
+En primer lugar, se lee la imagen en color con la función `cv2.imread()` de **OpenCV** y posteriormente se convierte a escalas de grises con `cv2.cvtColor()`. Esto permitirá calcular los valores mínimo y máximo de intensidad, junto con sus posiciones dentro de la imagen, utilizando la función `cv2.minMaxLoc()`.  
 
 Con las coordenadas del píxel más oscuro (`min_loc`) y del más claro (`max_loc`), devueltas por la función, se dibujan dos círculos:  
 - Un círculo negro para marcar el píxel más oscuro.  
