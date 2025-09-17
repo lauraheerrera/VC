@@ -115,3 +115,19 @@ Finalmente, la imagen modificada se convierte a su formato original RGB para pod
 
 De esta forma, se identificaron visualmente los puntos extremos de luminosidad dentro de la imagen, facilitando el análisis de contraste entre distintas zonas.  
 
+### ¿Si quisieras hacerlo sobre la zona 8x8 más clara/oscura?
+En este caso, en lugar de localizar **píxeles individuales** de máxima y mínima intensidad, se busca la **zona más clara y la más oscura de la imagen** dentro de bloques de **8 píxeles x 8 píxeles**.
+
+**Procedimiento**
+- Se definen variables que almacenan los valores de intensidad media mínima y máxima (`min_mean`, `max_mean`), junto con las posiciones de sus bloques.
+- Mediante **dos bucles anidados**, se recorre la imagen en pasos de 8 píxeles tanto en ancho como en alto.
+- Para cada bloque, se calcula la media de intensidad con `np.mean()`.
+- Cada vez que se encuentra un bloque más oscuro o más claro que los registrados previamente, se actualizan las variables de referencia junto con sus coordenadas.  
+
+Una vez localizadas las zonas extremas:
+   - Se dibuja un rectángulo negro en el bloque más oscuro.
+   - Se marca con un rectángulo verde el bloque más claro.
+
+En lugar de utilizar **círculos sobre píxeles concretos**, aquí se destacan **áreas completas de 8x8 píxeles**, lo que permite un análisis más global de regiones homogéneas de luminosidad.  
+
+> 💡 Se ha elegido el color **verde** para el bloque más claro ya que, al coincidir la posición del bloque de intensidad mínima con un borde de la imagen, el color blanco no se apreciaba correctamente.
