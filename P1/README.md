@@ -94,4 +94,24 @@ Una vez verificada la lectura correcta del fotograma:
 6. **Liberación de recursos**  
    Al finalizar, se liberan los recursos con:  
    - `vid.release()` → libera la cámara.  
-   - `cv2.destroyAllWindows()` → cierra todas las ventanas abiertas por OpenCV.  
+   - `cv2.destroyAllWindows()` → cierra todas las ventanas abiertas por OpenCV.
+  
+## Tarea 4: Pintar círculos en las posiciones del píxel más claro y oscuro de la imagen
+
+Para llevar a cabo esta tarea, se utilizó una imagen con una gran variedad de colores, con el fin de localizar y marcar los píxeles de mayor y menor intensidad.  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/16a632b2-da61-44b2-b673-20500fae632f" width="50%">
+</div>
+
+En primer lugar, se lee la imagen en color con la función `cv2.imread()` de OpenCV y posteriormente se convierte a escalas de grises con `cv2.cvtColor()`. Esto permitirá calcular los valores mínimo y máximo de intensidad, junto con sus posiciones dentro de la imagen, utilizando la función `cv2.minMaxLoc()`.  
+
+Con las coordenadas del píxel más oscuro (`min_loc`) y del más claro (`max_loc`), devueltas por la función, se dibujan dos círculos:  
+- Un círculo negro para marcar el píxel más oscuro.  
+- Un círculo blanco para señalar el píxel más claro.  
+
+Estos han sido generados con la función `cv2.circle()`, que toma como parámetros el centro, el radio, el color y el grosor del trazo. Además, a cada uno de ellos se le añade un texto descriptivo mediante la función `cv2.putText()`, con el fin de identificarlos claramente.  
+
+Finalmente, la imagen modificada se convierte a su formato original RGB para poder mostrarse correctamente con **Matplotlib**, eliminando los ejes para una presentación más limpia.  
+
+De esta forma, se identificaron visualmente los puntos extremos de luminosidad dentro de la imagen, facilitando el análisis de contraste entre distintas zonas.  
+
