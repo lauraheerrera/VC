@@ -57,3 +57,41 @@ Para construir la imagen, se ha empleado la librería **OpenCV**, que ofrece dis
 
 De esta forma, combinando rectángulos de colores primarios y líneas negras, se construye una **imagen digital con el estilo característico de Mondrian**.
 
+## TAREA 3: Modificación de los planos de color en una imagen con OpenCV
+
+El objetivo de esta tarea es realizar diferentes cambios visuales sobre los planos de color **(R, G, B)** de una imagen.  
+
+Para ello, se emplea la función `cv2.VideoCapture(0)` de la librería **OpenCV**, que permite acceder a la cámara y capturar fotogramas de en tiempo real.  
+En cada lectura:  
+- `ret` indica si la captura fue exitosa.  
+- `frame` almacena la imagen en formato de matriz con los valores de color en **BGR**, lista para su procesamiento.  
+
+Una vez verificada la lectura correcta del fotograma:
+
+1. **Obtención de dimensiones**: Con `frame.shape` se obtienen la altura (`h`), el ancho (`w`) y el número de canales de color (`c`).  
+
+2. **Separación de canales**: Se dividen los planos en **rojo (r)**, **verde (g)** y **azul (b)** para trabajar de forma independiente sobre cada uno.  
+
+3. **Transformaciones realizadas**  
+   - **Mostrando únicamente un color (rojo, verde o azul):** Se utiliza `cv2.merge` para combinar el canal deseado con matrices de ceros en los demás.  
+     Ejemplo: `[0, 0, r]` deja visibles únicamente los valores del plano rojo.  
+   - **Invirtiendo los colores (rojo, verde o azul):** Se calcula el complemento restando cada canal a 255 (`255 - r`, `255 - g`, `255 - b`) y se combinan los resultados con ceros en los otros planos.  
+   - **Añadiendo ruido en el canal rojo:** Se genera una matriz de valores aleatorios con `np.random.randint(0, 200)` y se suma al canal rojo con `cv2.add`. Luego, se reconstruye la imagen con `cv2.merge([0, 0, r_ruido])`, produciendo un efecto de puntos brillantes.  
+   - **Añadiendo franjas blancas en el canal verde:** Se modifica directamente la matriz del canal verde asignando 255 en ciertas filas y columnas (`g[100:120, :] = 255`, `g[:, 150:170] = 255`). Finalmente, se combina con ceros en los otros canales: `cv2.merge([0, g, 0])`.  
+   - **Aumentando la saturación en el canal azul:** Se multiplica el plano azul por un factor (`b * 4`) y se limita el rango con `np.clip`. Después, se reconstruye la imagen con `cv2.merge([b_sat, 0, 0])`, intensificando únicamente el azul.
+  
+4. **Creación del collage 3x3**  
+   Para mostrar todas las versiones, se emplean las funciones:  
+   - `np.hstack()` → apila imágenes horizontalmente.  
+   - `np.vstack()` → apila imágenes verticalmente.  
+   De esta manera, se genera una cuadrícula 3x3 con los canales originales, invertidos y modificados.  
+
+5. **Visualización**  
+   - Con `cv2.resize`, el collage se redimensiona a un tamaño mayor para visualizarlo correctamente. 
+   - `cv2.imshow()` abre una ventana en la que se muestran los fotogramas en tiempo real.  
+   - El programa se mantiene en ejecución hasta detectar la tecla **ESC** (`cv2.waitKey(20) == 27`).
+     
+6. **Liberación de recursos**  
+   Al finalizar, se liberan los recursos con:  
+   - `vid.release()` → libera la cámara.  
+   - `cv2.destroyAllWindows()` → cierra todas las ventanas abiertas por OpenCV.  
