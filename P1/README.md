@@ -131,3 +131,20 @@ Una vez localizadas las zonas extremas:
 En lugar de utilizar **círculos sobre píxeles concretos**, aquí se destacan **áreas completas de 8x8 píxeles**, lo que permite un análisis más global de regiones homogéneas de luminosidad.  
 
 > 💡 Se ha elegido el color **verde** para el bloque más claro ya que, al coincidir la posición del bloque de intensidad mínima con un borde de la imagen, el color blanco no se apreciaba correctamente.
+
+## Tarea 5: LLevar a cabo una propuesta propia de Pop Art
+En esta ocasión, dada la posibilidad de desarrollar una idea por libre, se tomó como inspiración parte de lo ya implementado en los ejemplos expuestos en el cuaderno, 
+además de indagar un poco el potencial de las librerías que se han empleado hasta ahora.  
+Lo que se ha decidido para formar este *Pop Art*, es fragmentar el marco de cámara en cuatro paneles, cada uno de los cuales presentará un “filtro” distinto. A continuación, se procederán a dar los detalles de la idea tomada.  
+Primeramente, se especificó con **cv2.VideoCapture(0)** que se leerá la imagen que proviene de la webcam, así como indicar el ancho y alto del que dispondrá cada uno de los 
+fotogramas captados por la cámara. Siempre y cuando la lectura de estos frames sea correcta, se permitirá la ejecución del programa. Seguidamente, con ayuda del método **cv2.resize()**, 
+se le ha asignado al propio frame que se tiene en lectura, las medidas ya comentadas: *ancho* y *alto*.  
+Tal y como se introdujo previamente, esta tarea consta de cuatro paneles. El primero y el cuarto de ellos, vienen dados por la función **cv2.applyColorMap()**, que según el argumento 
+que se indique como parámetro, establecerá una paleta de colores u otra a la imagen en formato BGR. Respectivamente, se escogieron los filtros **cv2.COLORMAP_JET**, que representa una 
+especie de mapa de calor, y **cv2.COLOMAP_INFERNO**.  
+Sin embargo, para el segundo y tercer panel, se llevó a cabo una lógica con el fin de pixelar la imagen. Dicha lógica, consiste en encoger cada frame con una proporción determinada 
+(para el segundo panel fue un factor de ocho, y para el tercero uno de 12). Esto es debido a que cada imagen contiene numerosos píxeles, y para que se logre ver pixelada, cada bloque 
+ha de abarcar más espacio, evitando el suavizado de la imagen. Es decir, exponiendo el caso del segundo panel, los píxeles se encogen en una proporción de ocho, de forma que al 
+agrandarlos nuevamente, simplemente se estiran y acabarán representando un espacio de 8x8. En cuanto al color que tomarán estos frames, los argumentos **cv2.INTER_AREA** y **cv2.INTER_NEAREST**
+se encargan de mezclar y promediar los colores en el proceso de encoger la imagen, y duplicarlos en el momento de la redimensión.  
+Finalmente, se apilan los diferentes marcos dentro de la ventana de ejecución por medio de los métodos **np.hstack()** y **np.vstack()**.
