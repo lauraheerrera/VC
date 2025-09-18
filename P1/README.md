@@ -148,3 +148,8 @@ ha de abarcar más espacio, evitando el suavizado de la imagen. Es decir, exponi
 agrandarlos nuevamente, simplemente se estiran y acabarán representando un espacio de 8x8. En cuanto al color que tomarán estos frames, los argumentos **`cv2.INTER_AREA`** y **`cv2.INTER_NEAREST`**
 se encargan de mezclar y promediar los colores en el proceso de encoger la imagen, y duplicarlos en el momento de la redimensión.  
 Finalmente, se apilan los diferentes marcos dentro de la ventana de ejecución por medio de los métodos **`np.hstack()`** y **`np.vstack()`**.
+
+> Uso de la IA:
+- Explicación de algunas funciones de las librerías **OpenCV** y **MatplotLib**
+- Estructura y redacción del Readme
+- Obtención de ideas originales para las tareas 3 y 5
