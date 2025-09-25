@@ -1,4 +1,12 @@
 # Práctica 2
+
+**Autores:**  
+- Laura Herrera Negrín  
+- Ayman Asbai Ghoudan
+
+**Universidad:** Universidad de Las Palmas de Gran Canaria  
+**Asignatura:** Visión por Computador  
+
 ---
 
 ## Tarea 1: Realiza la cuenta de píxeles blancos por filas (en lugar de por columnas). Determina el valor máximo de píxeles blancos para filas, maxfil, mostrando el número de filas y sus respectivas posiciones, con un número de píxeles blancos mayor o igual que 0.90*maxfil.
