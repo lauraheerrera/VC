@@ -6,6 +6,7 @@
 
 **Universidad:** Universidad de Las Palmas de Gran Canaria  
 **Asignatura:** Visión por Computador  
+
 ---
 
 Para llevar a cabo esta práctica, lo primero ha sido aprender a configurar el entorno de desarrollo, siguiendo las indicaciones explicadas en el guión. Para ello, se ha creado un entorno virtual con **Anaconda Prompt**, el cual permite instalar y utilizar ciertas librerías para poder trabajar con ellas en **Visual Studio Code**.
