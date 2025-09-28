@@ -22,9 +22,13 @@ Finalmente, se realiza una **visualización gráfica** que incluye:
 1. La imagen resultante del detector de bordes Canny.  
 2. Un gráfico del porcentaje de píxeles blancos por fila, con una línea que indica el umbral del 90% de `maxfil`.
 
+![Resultado Canny por filas](salidas/filas_canny.png)
+
 Esta visualización permite identificar de manera clara qué filas tienen la mayor concentración de bordes y evaluar la distribución vertical de los contornos en la imagen.
 
-El análisis mostró que la **fila 12** tiene la mayor concentración de bordes en la imagen, alcanzando aproximadamente el **43% de píxeles blancos**. Además, se identificaron otras **6 filas** que superan el 90% del valor máximo, lo que indica que existen varias zonas horizontales con alta densidad de bordes.
+El análisis mostró que la **fila 12** tiene la mayor concentración de bordes en la imagen, alcanzando aproximadamente el **43% de píxeles blancos**. Además, se identificaron otras **6 filas** que superan el 90% del valor máximo, lo que indica que existen varias zonas horizontales con alta densidad de bordes. 
+
+En el resultado gráfico, se puede apreciar que en la imagen se remarcan en color rojo las filas que superan el 90% del número máximo de píxeles no nulos. Se aprecia que estas líneas se concentran principalmente en la parte alta de la cara del mandril, coincidiendo con las zonas de mayor contraste.
 
 ## Tarea 2: Aplica umbralizado a la imagen resultante de Sobel (convertida a 8 bits), y posteriormente realiza el conteo por filas y columnas similar al realizado en el ejemplo con la salida de Canny de píxeles no nulos. Calcula el valor máximo de la cuenta por filas y columnas, y determina las filas y columnas por encima del 0.90*máximo. Remarca con alguna primitiva gráfica dichas filas y columnas sobre la imagen del mandril. 
 
