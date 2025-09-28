@@ -31,6 +31,7 @@ La estructura típica es:
 ├── Practica2/
 │   ├── VC_P2.ipynb
 │   ├── recursos/
+│   ├── salidas/
 │   └── README.md
 ├── Practica3/
 │   ├── VC_P3.ipynb
@@ -48,7 +49,6 @@ Estas ramas siguen la convención de nombres: ```P<num_practica>```
 Por ejemplo:
 - [P1](https://github.com/lauraheerrera/VC/tree/P1): Desarrollo de la Práctica 1
 - [P2](https://github.com/lauraheerrera/VC/tree/P2): Desarrollo de la Práctica 2
-- [P3](https://github.com/lauraheerrera/VC/tree/P3): Desarrollo de la Práctica 3
 
 --- 
 ## Prácticas
