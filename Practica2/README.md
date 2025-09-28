@@ -31,7 +31,18 @@ El análisis mostró que la **fila 12** tiene la mayor concentración de bordes 
 En el resultado gráfico, se puede apreciar que en la imagen se remarcan en color rojo las filas que superan el 90% del número máximo de píxeles no nulos. Se aprecia que estas líneas se concentran principalmente en la parte alta de la cara del mandril, coincidiendo con las zonas de mayor contraste.
 
 ## Tarea 2: Aplica umbralizado a la imagen resultante de Sobel (convertida a 8 bits), y posteriormente realiza el conteo por filas y columnas similar al realizado en el ejemplo con la salida de Canny de píxeles no nulos. Calcula el valor máximo de la cuenta por filas y columnas, y determina las filas y columnas por encima del 0.90*máximo. Remarca con alguna primitiva gráfica dichas filas y columnas sobre la imagen del mandril. 
+El objetivo de esta tarea es **aplicar un umbral a la imagen resultante del filtro Sobel** y posteriormente realizar el **conteo de píxeles blancos por filas y columnas**, similar al análisis realizado previamente con la salida de Canny. A partir de ello,, busca determinar los valores máximos de píxeles blancos por fila y columna, y resaltar las filas y columnas que superen el **90% de este máximo**.
 
+Para ello, al igual que se hizo anteriormente, se cargará la imagen `mandril.jpg` desde disco y se convierte a escala de grises para el filtro de Canny y se aplica un **desenfoque gaussiano** para suavizar el ruido antes del cálculo del gradiente para Sobel.
+
+A continuación para detectar los bordes con Sobel, se calculan los gradientes horizontales (`sobelx`) y verticales (`sobely`) usando el operador Sobel y  Se obtiene la magnitud del gradiente combinando ambos gradientes y se convirtiéndolo a 8 bits (`sobel8u`).  
+
+Ahora, se aplica un **umbral fijo** a la imagen de Sobel para obtener una imagen binaria (`sobel_umbral`), donde los píxeles de borde se representan en blanco (255).
+
+Con la imagen umbralizada, se realiza el **conteo de píxeles blancos por filas y columnas**, similar al procedimiento realizado en los ejemplos con Canny. Esto permite determinar qué filas y columnas contienen la mayor concentración de bordes. Con ello, se calcula el **valor máximo por fila y por columna**, y se seleccionan aquellas filas y columnas cuyo número de píxeles blancos supera el **90% de este máximo**.
+Finalmente, se visualiza en un gráfico el resultado:
+   - Las filas que superan el 90% del máximo se remarcan en **rojo** 
+   - Las columnas en **azul** sobre la imagen umbralizada.  
 
 ### ¿Cómo se comparan los resultados obtenidos a partir de Sobel y Canny?
 
