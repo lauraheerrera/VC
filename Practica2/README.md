@@ -42,9 +42,38 @@ Ahora, se aplica un **umbral fijo** a la imagen de Sobel para obtener una imagen
 Con la imagen umbralizada, se realiza el **conteo de píxeles blancos por filas y columnas**, similar al procedimiento realizado en los ejemplos con Canny. Esto permite determinar qué filas y columnas contienen la mayor concentración de bordes. Con ello, se calcula el **valor máximo por fila y por columna**, y se seleccionan aquellas filas y columnas cuyo número de píxeles blancos supera el **90% de este máximo**.
 Finalmente, se visualiza en un gráfico el resultado:
    - Las filas que superan el 90% del máximo se remarcan en **rojo** 
-   - Las columnas en **azul** sobre la imagen umbralizada.  
+   - Las columnas que superan el 90% del máximo se remarcan en **azul**.
+
+<div align="center">
+  <img src="salidas/sobel_umbralizado.png" width="50%">
+</div>
+
+Se han remarcado más filas que columnas, lo que se puede concluir que, tras umbralizar la imagen, los bordes horizontales son más predominantes que los verticales. Esto indica que hay más cambios de intensidad a lo largo de la dirección vertical (generando bordes horizontales) que a lo largo de la dirección horizontal. En la imagen del mandril, esto se traduce en que los rasgos faciales y las zonas de contraste, como la frente, los ojos o el pelaje, presentan transiciones de intensidad más marcadas horizontalmente.
 
 ### ¿Cómo se comparan los resultados obtenidos a partir de Sobel y Canny?
+![Comparativa Sobel y Canny](salidas/sobel_vs_canny.png)
+
+Numéricamente, los resultados son los siguientes:
+
+| Método | Max píxeles por fila | Filas ≥ 0.9·max | Max píxeles por columna | Columnas ≥ 0.9·max |
+| ------ | -------------------- | --------------- | ----------------------- | ------------------ |
+| Sobel  | 0.3320               | 13              | 0.2969                  | 3                  |
+| Canny  | 0.4297               | 7               | 0.3652                  | 19                 |
+
+**Distribución y calidad de los bordes**
+* Sobel detecta principalmente bordes horizontales, generando contornos gruesos y dispersos, con más ruido y redundancia.
+* Canny resalta bordes finos, continuos y precisos, especialmente verticales, centrados en los contornos relevantes (ojos, hocico, contorno facial).
+
+**Interpretación visual**
+* En las imágenes con líneas, se observa que Sobel marca más filas dispersas, mientras que Canny resalta las columnas principales y los contornos importantes.
+* Esto refleja la mayor selectividad y robustez del detector de Canny frente a Sobel umbralizado.
+
+**Conclusión final**
+* Sobel ofrece un panorama amplio de cambios de intensidad, marcando más filas dispersas.
+* Canny es más selectivo, resaltando columnas principales y contornos estructurales importantes.
+  
+Se puede concluir que Sobel proporciona un mapeo más amplio de bordes, especialmente horizontales aunque con algo ruido, mientras que Canny concentra su detección en bordes significativos y continuos, ofreciendo una visión más limpia y estructural de la imagen.
+
 
 ## Tarea 3: Proponer un demostrador que capture las imágenes de la cámara, y les permita exhibir lo aprendido en estas dos prácticas ante quienes no cursen la asignatura :). Es por ello que además de poder mostrar la imagen original de la webcam, permita cambiar de modo, incluyendo al menos dos procesamientos diferentes como resultado de aplicar las funciones de OpenCV trabajadas hasta ahora.
 
