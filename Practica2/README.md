@@ -51,6 +51,14 @@ Finalmente, se visualiza en un gráfico el resultado:
 Se han remarcado más filas que columnas, lo que se puede concluir que, tras umbralizar la imagen, los bordes horizontales son más predominantes que los verticales. Esto indica que hay más cambios de intensidad a lo largo de la dirección vertical (generando bordes horizontales) que a lo largo de la dirección horizontal. En la imagen del mandril, esto se traduce en que los rasgos faciales y las zonas de contraste, como la frente, los ojos o el pelaje, presentan transiciones de intensidad más marcadas horizontalmente.
 
 ### ¿Cómo se comparan los resultados obtenidos a partir de Sobel y Canny?
+Para responder a esta pregunta, se ha seguido un procedimiento similar al que se hizo con Sobel para Canny:
+1. Convertir la imagen a una escala de grises para detectar los bordes.
+2. Aplicar el algoritmo de Canny para detectar los bordes de la imagen.
+3. Calcular los valores máximos de los bordes a lo olargo de cada columna y fila.
+4. Aplicar un umbral del 90% del valor mázimo para identificar qué filas y columnas son lass más significaticas.
+
+Con ello, se obtuvo una visualización comparativa que permite apreciar las diferencias en la detección de bordes entre ambos métodos:
+
 ![Comparativa Sobel y Canny](salidas/sobel_vs_canny.png)
 
 Numéricamente, los resultados son los siguientes:
