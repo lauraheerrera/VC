@@ -127,7 +127,18 @@ vista = frame.copy()
    ```
 
 ## Tarea 4: Tras ver los vídeos [My little piece of privacy](https://www.niklasroy.com/project/88/my-little-piece-of-privacy), [Messa di voce](https://youtu.be/GfoqiyB1ndE?feature=shared) y [Virtual air guitar](https://youtu.be/FIAmyoEpV5c?feature=shared) proponer un demostrador reinterpretando la parte de procesamiento de la imagen, tomando como punto de partida alguna de dichas instalaciones.
+El objetivo de esta práctica es explorar cómo el movimiento del usuario frente a la cámara puede transformarse en elementos visuales dinámicos, creando una experiencia interactiva en tiempo real. Para ello, tomando como inspiración los vídeos de referencia, el demostrador:  
+- Detecta **objetos en movimiento** mediante sustracción de fondo.  
+- Genera **elementos gráficos dinámicos** (círculos de colores) en la posición del movimiento detectado.  
+- Permite una **visualización interactiva** mostrando tanto la máscara de movimiento como la imagen real con los elementos gráficos superpuestos.  
 
+Para comenzar, se captura video desde la **webcam** y se aplica un **sustractor de fondo** basado en mezcla de gaussianas (`cv2.createBackgroundSubtractorMOG2`). Este genera una **máscara binaria** que resalta los cambios entre frames, detectando objetos en movimiento. La configuración utilizada (`history=100, varThreshold=80, detectShadows=False`) permite un equilibrio entre sensibilidad y estabilidad, evitando que pequeños ruidos generen falsas detecciones.
+
+A partir de la **máscara de movimiento**, se buscan contornos que representen las **áreas de mayor actividad**. Solo se consideran aquellos contornos cuyo área supere un **umbral mínimo** (1000 píxeles), descartando pequeñas variaciones que podrían interferir con la interacción visual.
+
+Cada contorno identificado genera un círculo de color en la posición central del contorno. Estos tienen un tamaño fijo (`RADIUS = 15`) y un tiempo de vida limitado (`LIFETIME = 50 frames`), lo que crea un efecto visual dinámico: los elementos aparecen cuando hay movimiento y desaparecen progresivamente, generando un rastro visual según la actividad del usuario.
+
+La visualización del demostrador se realiza de manera interactiva: se muestra lado a lado la máscara de movimiento con las zonas que cambian respecto al fondo y la imagen real con los círculos superpuestos. Esto permite al usuario observar simultáneamente cómo se detecta el movimiento y cómo este se traduce en elementos visuales, cerrando el ciclo de interacción.
 
 > Uso de la IA:
 - Explicación de algunas funciones de las librerías **OpenCV** y **MatplotLib**
