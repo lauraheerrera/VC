@@ -10,6 +10,8 @@
 ---
 
 ## Tarea 1: Realiza la cuenta de píxeles blancos por filas (en lugar de por columnas). Determina el valor máximo de píxeles blancos para filas, maxfil, mostrando el número de filas y sus respectivas posiciones, con un número de píxeles blancos mayor o igual que 0.90*maxfil.
+- **Salida:** Imagen [`salidas/filas_canny.png`](salidas/filas_canny.png) mostrando las filas destacadas.
+
 El objetivo de esta tarea es realizar la **cuenta de píxeles blancos por filas** en una imagen, en lugar de hacerlo por columnas. Se busca determinar el valor máximo de píxeles blancos por fila (`maxfil`) y mostrar las filas que tengan un número de píxeles blancos mayor o igual a 0.90 * `maxfil`.
 
 Para ello, primero se debe **cargar la imagen** `mandril.jpg` desde el disco y **convertirla a escala de grises**, lo que permite detectar bordes utilizando un único canal. A continuación, se aplica el **detector de bordes Canny** (`cv2.Canny(img, threshold1, threshold2)`), en el que `threshold1` y `threshold2` definen los límites para detectar bordes débiles y fuertes, respectivamente. Los píxeles detectados como bordes se representan en blanco (255) y el resto en negro (0).
@@ -31,6 +33,11 @@ El análisis mostró que la **fila 12** tiene la mayor concentración de bordes 
 En el resultado gráfico, se puede apreciar que en la imagen se remarcan en color rojo las filas que superan el 90% del número máximo de píxeles no nulos. Se aprecia que estas líneas se concentran principalmente en la parte alta de la cara del mandril, coincidiendo con las zonas de mayor contraste.
 
 ## Tarea 2: Aplica umbralizado a la imagen resultante de Sobel (convertida a 8 bits), y posteriormente realiza el conteo por filas y columnas similar al realizado en el ejemplo con la salida de Canny de píxeles no nulos. Calcula el valor máximo de la cuenta por filas y columnas, y determina las filas y columnas por encima del 0.90*máximo. Remarca con alguna primitiva gráfica dichas filas y columnas sobre la imagen del mandril. 
+- **Salida:** Imágenes comparativas:
+  - [`salidas/sobel_umbralizado.png`](salidas/sobel_umbralizado.png)
+  - [`salidas/comparativa_sobel_canny.png`](salidas/comparativa_sobel_canny.png)
+  - [`salidas/sobel_vs_canny.png`](salidas/sobel_vs_canny.png)
+
 El objetivo de esta tarea es **aplicar un umbral a la imagen resultante del filtro Sobel** y posteriormente realizar el **conteo de píxeles blancos por filas y columnas**, similar al análisis realizado previamente con la salida de Canny. A partir de ello,, busca determinar los valores máximos de píxeles blancos por fila y columna, y resaltar las filas y columnas que superen el **90% de este máximo**.
 
 Para ello, al igual que se hizo anteriormente, se cargará la imagen `mandril.jpg` desde disco y se convierte a escala de grises para el filtro de Canny y se aplica un **desenfoque gaussiano** para suavizar el ruido antes del cálculo del gradiente para Sobel.
@@ -84,6 +91,8 @@ Se puede concluir que Sobel proporciona un mapeo más amplio de bordes, especial
 
 
 ## Tarea 3: Proponer un demostrador que capture las imágenes de la cámara, y les permita exhibir lo aprendido en estas dos prácticas ante quienes no cursen la asignatura :). Es por ello que además de poder mostrar la imagen original de la webcam, permita cambiar de modo, incluyendo al menos dos procesamientos diferentes como resultado de aplicar las funciones de OpenCV trabajadas hasta ahora.
+- **Modo de uso:** Teclas `1`, `2`, `3` para cambiar de modo; `ESC` para salir.
+
 El objetivo de esta tarea es aplicar los conocimientos adquiridos en las prácticas anteriores. Para ello, se capturará vídeo desde la webcam y se aplicarán distintos efectos visuales en tiempo real.
 
 El programa permitirá alternar entre diferentes modos de visualización utilizando el teclado:
@@ -127,7 +136,20 @@ vista = frame.copy()
    ```
 
 ## Tarea 4: Tras ver los vídeos [My little piece of privacy](https://www.niklasroy.com/project/88/my-little-piece-of-privacy), [Messa di voce](https://youtu.be/GfoqiyB1ndE?feature=shared) y [Virtual air guitar](https://youtu.be/FIAmyoEpV5c?feature=shared) proponer un demostrador reinterpretando la parte de procesamiento de la imagen, tomando como punto de partida alguna de dichas instalaciones.
+El objetivo de esta práctica es explorar cómo el movimiento del usuario frente a la cámara puede transformarse en elementos visuales dinámicos, creando una experiencia interactiva en tiempo real. Para ello, tomando como inspiración los vídeos de referencia, el demostrador:  
+- Detecta **objetos en movimiento** mediante sustracción de fondo.  
+- Genera **elementos gráficos dinámicos** (círculos de colores) en la posición del movimiento detectado.  
+- Permite una **visualización interactiva** mostrando tanto la máscara de movimiento como la imagen real con los elementos gráficos superpuestos.  
 
+Para comenzar, se captura video desde la **webcam** y se aplica un **sustractor de fondo** basado en mezcla de gaussianas (`cv2.createBackgroundSubtractorMOG2`). Este genera una **máscara binaria** que resalta los cambios entre frames, detectando objetos en movimiento. La configuración utilizada (`history=100, varThreshold=80, detectShadows=False`) permite un equilibrio entre sensibilidad y estabilidad, evitando que pequeños ruidos generen falsas detecciones.
+
+A partir de la **máscara de movimiento**, se buscan contornos que representen las **áreas de mayor actividad**. Solo se consideran aquellos contornos cuyo área supere un **umbral mínimo** (1000 píxeles), descartando pequeñas variaciones que podrían interferir con la interacción visual.
+
+Cada contorno identificado genera un círculo de color en la posición central del contorno. Estos tienen un tamaño fijo (`RADIUS = 15`) y un tiempo de vida limitado (`LIFETIME = 50 frames`), lo que crea un efecto visual dinámico: los elementos aparecen cuando hay movimiento y desaparecen progresivamente, generando un rastro visual según la actividad del usuario.
+
+Cada círculo se almacena en la **lista `circles`**, donde se guarda toda la información necesaria para su visualización y gestión: la posición `(x, y)` del centro, el **radio** del círculo, su **color** y el **tiempo de vida restante** (en frames). En cada iteración del bucle principal, se dibujan todos los círculos presentes en la lista y se decrementa su tiempo de vida. Cuando un círculo alcanza cero, se elimina de la lista, lo que permite que los elementos visuales **aparezcan y desaparezcan de forma fluida** manteniendo la interactividad.  
+
+La visualización del demostrador se realiza de manera interactiva: se muestra lado a lado la máscara de movimiento con las zonas que cambian respecto al fondo y la imagen real con los círculos superpuestos. Esto permite al usuario observar simultáneamente cómo se detecta el movimiento y cómo este se traduce en elementos visuales, cerrando el ciclo de interacción.
 
 > Uso de la IA:
 - Explicación de algunas funciones de las librerías **OpenCV** y **MatplotLib**
