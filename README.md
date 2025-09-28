@@ -16,8 +16,11 @@ Este repositorio contiene todas las prácticas realizadas durante la asignatura 
 ## Estructura del repositorio
 Cada carpeta de práctica contiene:
 - Notebook de la práctica.  
-- Los recursos necesarios (imágenes, vídeos, etc.).  
-- Un README específico explicando la práctica y los resultados obtenidos.  La estructura típica es:
+- Los recursos necesarios (imágenes, vídeos, etc.).
+- Salidas de imágenes y gráficos.
+- Un README específico explicando la práctica y los resultados obtenidos.
+
+La estructura típica es:
 
 ```bash
 .
@@ -38,6 +41,16 @@ Cada carpeta de práctica contiene:
 ```
 
 ---
+## Ramas
+Además de la rama principal, el repositorio cuenta con ramas de desarrollo específicas para cada práctica.
+Estas ramas siguen la convención de nombres: ```P<num_practica>```
+
+Por ejemplo:
+- [P1](https://github.com/lauraheerrera/VC/tree/P1): Desarrollo de la Práctica 1
+- [P2](https://github.com/lauraheerrera/VC/tree/P2): Desarrollo de la Práctica 2
+- [P3](https://github.com/lauraheerrera/VC/tree/P3): Desarrollo de la Práctica 3
+
+--- 
 ## Requisitos
 - Python >= 3.11.5 
 - Librerías: `OpenCV`, `NumPy`, `Matplotlib`
