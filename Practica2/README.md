@@ -51,6 +51,14 @@ Finalmente, se visualiza en un gráfico el resultado:
 Se han remarcado más filas que columnas, lo que se puede concluir que, tras umbralizar la imagen, los bordes horizontales son más predominantes que los verticales. Esto indica que hay más cambios de intensidad a lo largo de la dirección vertical (generando bordes horizontales) que a lo largo de la dirección horizontal. En la imagen del mandril, esto se traduce en que los rasgos faciales y las zonas de contraste, como la frente, los ojos o el pelaje, presentan transiciones de intensidad más marcadas horizontalmente.
 
 ### ¿Cómo se comparan los resultados obtenidos a partir de Sobel y Canny?
+Para responder a esta pregunta, se ha seguido un procedimiento similar al que se hizo con Sobel para Canny:
+1. Convertir la imagen a una escala de grises para detectar los bordes.
+2. Aplicar el algoritmo de Canny para detectar los bordes de la imagen.
+3. Calcular los valores máximos de los bordes a lo olargo de cada columna y fila.
+4. Aplicar un umbral del 90% del valor mázimo para identificar qué filas y columnas son lass más significaticas.
+
+Con ello, se obtuvo una visualización comparativa que permite apreciar las diferencias en la detección de bordes entre ambos métodos:
+
 ![Comparativa Sobel y Canny](salidas/sobel_vs_canny.png)
 
 Numéricamente, los resultados son los siguientes:
@@ -76,6 +84,47 @@ Se puede concluir que Sobel proporciona un mapeo más amplio de bordes, especial
 
 
 ## Tarea 3: Proponer un demostrador que capture las imágenes de la cámara, y les permita exhibir lo aprendido en estas dos prácticas ante quienes no cursen la asignatura :). Es por ello que además de poder mostrar la imagen original de la webcam, permita cambiar de modo, incluyendo al menos dos procesamientos diferentes como resultado de aplicar las funciones de OpenCV trabajadas hasta ahora.
+El objetivo de esta tarea es aplicar los conocimientos adquiridos en las prácticas anteriores. Para ello, se capturará vídeo desde la webcam y se aplicarán distintos efectos visuales en tiempo real.
+
+El programa permitirá alternar entre diferentes modos de visualización utilizando el teclado:
+* `1` → Modo original: muestra la imagen de la webcam sin ningún efecto, tal como se captura.
+* `2` → Modo pixelado con mapa de colores: reduce la resolución de la imagen para crear un efecto de pixelado y, posteriormente, aplica un mapa de colores para resaltar las diferentes intensidades.
+* `3` → Modo bordes en color: detecta los bordes de la imagen utilizando el algoritmo de Canny con distintos umbrales y los colorea en azul, verde y rojo, superponiéndolos sobre la imagen original.
+
+Además, en la parte inferior de la ventana se mostrarán instrucciones sobre cómo cambiar de modo y cómo salir del programa.
+> Para **salir del programa**, se debe presionar la `tecla ESC`.
+
+#### Modos de visualización
+
+**Modo 1: Original**
+
+Este modo muestra el vídeo capturado por la webcam sin aplicar ningún efecto, simplemente mostrando la imagen tal como se recibe.
+```python
+vista = frame.copy()
+```
+
+**Modo 2: Pixelado + color**
+1. Se reduce la resolución de la imagen para crear un efecto pixelado.
+2. Luego se escala de nuevo al tamaño original.
+3. Finalmente se aplica un mapa de color JET, que colorea la imagen según intensidad.
+  ```python
+   cv2.applyColorMap(imagen, cv2.COLORMAP_JET)
+   ```
+
+**Modo 3: Bordes de movimiento en color**
+1. Convierte la imagen a escala de grises.
+2. Aplica un desenfoque gaussiano para reducir ruido.
+3. Detecta bordes usando Canny con diferentes umbrales:   
+   - Azul: 30–60
+   - Verde: 60–120
+   - Rojo: 120–240
+  ```python
+   cv2.Canny(imagen, minVal, maxVal)
+   ```
+4. Superpone los bordes coloreados sobre la imagen original con distintas transparencias.
+  ```python
+   cv2.addWeighted(img1, alpha, img2, beta, gamma)
+   ```
 
 ## Tarea 4: Tras ver los vídeos [My little piece of privacy](https://www.niklasroy.com/project/88/my-little-piece-of-privacy), [Messa di voce](https://youtu.be/GfoqiyB1ndE?feature=shared) y [Virtual air guitar](https://youtu.be/FIAmyoEpV5c?feature=shared) proponer un demostrador reinterpretando la parte de procesamiento de la imagen, tomando como punto de partida alguna de dichas instalaciones.
 
