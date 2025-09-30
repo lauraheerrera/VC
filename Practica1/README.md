@@ -18,9 +18,8 @@
 - [Tarea 5 - Pop Art](#tarea5)
 
 ---
-
-## <h2 id="librerias">Librerías utilizadas</h2>
-
+<a name="librerias"></a>
+## Librerías utilizadas
 Para la realización de esta práctica se emplearon principalmente las siguientes librerías de Python:
 
 - **NumPy** → Creación y manipulación de matrices e imágenes.  
