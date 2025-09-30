@@ -8,10 +8,32 @@
 **Asignatura:** Visión por Computador  
 
 ---
+
+## Contenidos
+- [Librerías utilizadas](#librerias)
+- [Tarea 1 - Tablero de ajedrez](#tarea1)
+- [Tarea 2 - Imagen estilo Mondrian](#tarea2)
+- [Tarea 3 - Modificación de planos de color](#tarea3)
+- [Tarea 4 - Píxel más claro y oscuro](#tarea4)
+- [Tarea 5 - Pop Art](#tarea5)
+
+---
+
+## <h2 id="librerias">Librerías utilizadas</h2>
+
+Para la realización de esta práctica se emplearon principalmente las siguientes librerías de Python:
+
+- **NumPy** → Creación y manipulación de matrices e imágenes.  
+- **OpenCV (cv2)** → Procesamiento de imágenes, acceso a la webcam y funciones de dibujo.  
+- **Matplotlib** → Visualización de imágenes y gráficos.  
+- **Random (módulo de NumPy)** → Generación de valores aleatorios para efectos visuales.  
+
+---
 Para llevar a cabo esta práctica, lo primero ha sido aprender a configurar el entorno de desarrollo, siguiendo las indicaciones explicadas en el guión. Para ello, se ha creado un entorno virtual con **Anaconda Prompt**, el cual permite instalar y utilizar ciertas librerías para poder trabajar con ellas en **Visual Studio Code**.
 
 ---
 
+<a name="tarea1"></a>
 ## Tarea 1: Crea una imagen, p.e. de 800x800 píxeles, con la textura del tablero de ajedrez
 
 Antes de implementar esta tarea, fue necesario investigar cómo es un [tablero de ajedrez](https://image.freepik.com/vector-gratis/tablero-ajedrez-figuras-ajedrez-blanco-negro-ilustracion-vectorial_125869-1622.jpg) : se trata de un cuadrado dividido en **ocho filas** y **ocho columnas**, donde los cuadros se alternan entre color blanco y negro.
@@ -31,6 +53,7 @@ Para optimizar el proceso, se ha optado por ***dos bucles anidados***. En cada p
 
 Finalmente, con la función **`plt.imshow()`** de librería **Matplotlib**, se muestra la imagen generada.
 
+<a name="tarea2"></a>
 ## Tarea 2: Crear una imagen estilo Mondrian con las funciones de dibujo de OpenCV
 
 El objetivo de esta tarea es generar una imagen inspirada en las obras del pintor **Piet Mondrian**, quien utilizaba rectángulos de colores primarios (**rojo, azul y amarillo**) y líneas negras gruesas para dividir el espacio.
@@ -65,8 +88,8 @@ Para construir la imagen, se ha empleado la librería **OpenCV**, que ofrece dis
 
 De esta forma, combinando rectángulos de colores primarios y líneas negras, se construye una **imagen digital con el estilo característico de Mondrian**.
 
+<a name="tarea3"></a>
 ## TAREA 3: Modificación de los planos de color en una imagen con OpenCV
-
 El objetivo de esta tarea es realizar diferentes cambios visuales sobre los planos de color **(R, G, B)** de una imagen.  
 
 Para ello, se emplea la función `cv2.VideoCapture(0)` de la librería **OpenCV**, que permite acceder a la cámara y capturar fotogramas de en tiempo real.  
@@ -103,9 +126,9 @@ Una vez verificada la lectura correcta del fotograma:
    Al finalizar, se liberan los recursos con:  
    - `vid.release()` → libera la cámara.  
    - `cv2.destroyAllWindows()` → cierra todas las ventanas abiertas por OpenCV.
-  
-## Tarea 4: Pintar círculos en las posiciones del píxel más claro y oscuro de la imagen
 
+<a name="tarea4"></a>
+## Tarea 4: Pintar círculos en las posiciones del píxel más claro y oscuro de la imagen
 Para llevar a cabo esta tarea, se utilizó una imagen con una gran variedad de colores, con el fin de localizar y marcar los píxeles de mayor y menor intensidad.  
 <div align="center">
   <img src="https://github.com/user-attachments/assets/16a632b2-da61-44b2-b673-20500fae632f" width="50%">
@@ -140,6 +163,7 @@ En lugar de utilizar **círculos sobre píxeles concretos**, aquí se destacan *
 
 > 💡 Se ha elegido el color **verde** para el bloque más claro ya que, al coincidir la posición del bloque de intensidad mínima con un borde de la imagen, el color blanco no se apreciaba correctamente.
 
+<a name="tarea5"></a>
 ## Tarea 5: LLevar a cabo una propuesta propia de Pop Art
 En esta ocasión, dada la posibilidad de desarrollar una idea por libre, se tomó como inspiración parte de lo ya implementado en los ejemplos expuestos en el cuaderno, 
 además de indagar un poco el potencial de las librerías que se han empleado hasta ahora.  
