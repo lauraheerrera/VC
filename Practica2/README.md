@@ -8,7 +8,22 @@
 **Asignatura:** Visión por Computador  
 
 ---
+## Contenidos
+- [Tarea 1 - Conteo por filas (Canny)](#tarea1)
+- [Tarea 2 - Sobel + Umbralizado](#tarea2)
+- [Tarea 3 - Demostrador en tiempo real](#tarea3)
+- [Tarea 4 - Interactivo inspirado en vídeos](#tarea4)
 
+---
+
+## Librerías utilizadas
+- **OpenCV (`cv2`)**: Procesamiento de imágenes y vídeo, detección de bordes (Canny, Sobel), filtros, umbralizado, captura de webcam y primitivas gráficas.  
+- **NumPy (`numpy`)**: Operaciones matriciales, reducción y conteo de píxeles en imágenes.  
+- **Matplotlib (`matplotlib.pyplot`)**: Visualización de gráficos y representación de distribuciones de píxeles por filas y columnas.  
+- **OS (`os`)**: Gestión de directorios y rutas para guardar y cargar imágenes de salida.  
+---
+
+<a name="tarea1"></a>
 ## Tarea 1: Realiza la cuenta de píxeles blancos por filas (en lugar de por columnas). Determina el valor máximo de píxeles blancos para filas, maxfil, mostrando el número de filas y sus respectivas posiciones, con un número de píxeles blancos mayor o igual que 0.90*maxfil.
 - **Salida:** Imagen [`salidas/filas_canny.png`](salidas/filas_canny.png) mostrando las filas destacadas.
 
@@ -32,6 +47,7 @@ El análisis mostró que la **fila 12** tiene la mayor concentración de bordes 
 
 En el resultado gráfico, se puede apreciar que en la imagen se remarcan en color rojo las filas que superan el 90% del número máximo de píxeles no nulos. Se aprecia que estas líneas se concentran principalmente en la parte alta de la cara del mandril, coincidiendo con las zonas de mayor contraste.
 
+<a name="tarea2"></a>
 ## Tarea 2: Aplica umbralizado a la imagen resultante de Sobel (convertida a 8 bits), y posteriormente realiza el conteo por filas y columnas similar al realizado en el ejemplo con la salida de Canny de píxeles no nulos. Calcula el valor máximo de la cuenta por filas y columnas, y determina las filas y columnas por encima del 0.90*máximo. Remarca con alguna primitiva gráfica dichas filas y columnas sobre la imagen del mandril. 
 - **Salida:** Imágenes comparativas:
   - [`salidas/sobel_umbralizado.png`](salidas/sobel_umbralizado.png)
@@ -89,7 +105,7 @@ Numéricamente, los resultados son los siguientes:
   
 Se puede concluir que Sobel proporciona un mapeo más amplio de bordes, especialmente horizontales aunque con algo ruido, mientras que Canny concentra su detección en bordes significativos y continuos, ofreciendo una visión más limpia y estructural de la imagen.
 
-
+<a name="tarea3"></a>
 ## Tarea 3: Proponer un demostrador que capture las imágenes de la cámara, y les permita exhibir lo aprendido en estas dos prácticas ante quienes no cursen la asignatura :). Es por ello que además de poder mostrar la imagen original de la webcam, permita cambiar de modo, incluyendo al menos dos procesamientos diferentes como resultado de aplicar las funciones de OpenCV trabajadas hasta ahora.
 - **Modo de uso:** Teclas `1`, `2`, `3` para cambiar de modo; `ESC` para salir.
 
@@ -135,6 +151,7 @@ vista = frame.copy()
    cv2.addWeighted(img1, alpha, img2, beta, gamma)
    ```
 
+<a name="tarea4"></a>
 ## Tarea 4: Tras ver los vídeos [My little piece of privacy](https://www.niklasroy.com/project/88/my-little-piece-of-privacy), [Messa di voce](https://youtu.be/GfoqiyB1ndE?feature=shared) y [Virtual air guitar](https://youtu.be/FIAmyoEpV5c?feature=shared) proponer un demostrador reinterpretando la parte de procesamiento de la imagen, tomando como punto de partida alguna de dichas instalaciones.
 El objetivo de esta práctica es explorar cómo el movimiento del usuario frente a la cámara puede transformarse en elementos visuales dinámicos, creando una experiencia interactiva en tiempo real. Para ello, tomando como inspiración los vídeos de referencia, el demostrador:  
 - Detecta **objetos en movimiento** mediante sustracción de fondo.  
