@@ -16,7 +16,8 @@
 - [Tarea 4 - Interactivo inspirado en vídeos](#tarea4)
 
 ---
-## <h2 id="librerias">Librerías utilizadas</h2>
+<a name= "librerias"></a>
+## Librerías utilizadas
 - **OpenCV (`cv2`)**: Procesamiento de imágenes y vídeo, detección de bordes (Canny, Sobel), filtros, umbralizado, captura de webcam y primitivas gráficas.  
 - **NumPy (`numpy`)**: Operaciones matriciales, reducción y conteo de píxeles en imágenes.  
 - **Matplotlib (`matplotlib.pyplot`)**: Visualización de gráficos y representación de distribuciones de píxeles por filas y columnas.  
