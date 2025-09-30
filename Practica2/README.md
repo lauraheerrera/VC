@@ -9,14 +9,14 @@
 
 ---
 ## Contenidos
+- [Librerías utilizadas](#librerias)
 - [Tarea 1 - Conteo por filas (Canny)](#tarea1)
 - [Tarea 2 - Sobel + Umbralizado](#tarea2)
 - [Tarea 3 - Demostrador en tiempo real](#tarea3)
 - [Tarea 4 - Interactivo inspirado en vídeos](#tarea4)
 
 ---
-
-## Librerías utilizadas
+<a name= "librerias"></a>
 - **OpenCV (`cv2`)**: Procesamiento de imágenes y vídeo, detección de bordes (Canny, Sobel), filtros, umbralizado, captura de webcam y primitivas gráficas.  
 - **NumPy (`numpy`)**: Operaciones matriciales, reducción y conteo de píxeles en imágenes.  
 - **Matplotlib (`matplotlib.pyplot`)**: Visualización de gráficos y representación de distribuciones de píxeles por filas y columnas.  
