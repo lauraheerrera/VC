@@ -15,6 +15,14 @@
 - [Tarea 4 - Interactivo inspirado en vídeos](#tarea4)
 
 ---
+
+## Librerías utilizadas
+- **OpenCV (`cv2`)**: Procesamiento de imágenes y vídeo, detección de bordes (Canny, Sobel), filtros, umbralizado, captura de webcam y primitivas gráficas.  
+- **NumPy (`numpy`)**: Operaciones matriciales, reducción y conteo de píxeles en imágenes.  
+- **Matplotlib (`matplotlib.pyplot`)**: Visualización de gráficos y representación de distribuciones de píxeles por filas y columnas.  
+- **OS (`os`)**: Gestión de directorios y rutas para guardar y cargar imágenes de salida.  
+---
+
 <a name="tarea1"></a>
 ## Tarea 1: Realiza la cuenta de píxeles blancos por filas (en lugar de por columnas). Determina el valor máximo de píxeles blancos para filas, maxfil, mostrando el número de filas y sus respectivas posiciones, con un número de píxeles blancos mayor o igual que 0.90*maxfil.
 - **Salida:** Imagen [`salidas/filas_canny.png`](salidas/filas_canny.png) mostrando las filas destacadas.
