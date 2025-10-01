@@ -58,8 +58,9 @@ Por ejemplo:
 ---
 ## Requisitos
 - Python >= 3.11.5 
-- Librerías: `OpenCV`, `NumPy`, `Matplotlib`
-- Jupyter Notebook
+- Librerías
+
+[![OpenCV](https://img.shields.io/badge/OpenCV-%23FD8C00?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)  [![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)  [![Matplotlib](https://img.shields.io/badge/Matplotlib-%23006DBA?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)  
 
 Se recomienda crear un entorno virtual para instalar las dependencias.
 
