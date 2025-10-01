@@ -58,7 +58,11 @@ Por ejemplo:
 ---
 ## Requisitos
 - Python >= 3.11.5 
-- Librerías: `OpenCV`, `NumPy`, `Matplotlib`
+- Librerías:
+
+[![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy)](https://numpy.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-%23FD8C00?style=for-the-badge&logo=opencv)](https://opencv.org/)
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-%43FF6400?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)
 - Jupyter Notebook
 
 Se recomienda crear un entorno virtual para instalar las dependencias.
@@ -98,3 +102,4 @@ jupyter notebook <Cuaderno>
 - Aplicar técnicas de visión por computador en problemas prácticos.
 - Aprender a utilizar librerías como OpenCV, NumPy y Matplotlib en proyectos reales.
 - Desarrollar habilidades de análisis de imágenes y vídeos, y presentación de resultados de manera visual.
+
