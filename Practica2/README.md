@@ -14,14 +14,28 @@
 - [Tarea 2 - Sobel + Umbralizado](#tarea2)
 - [Tarea 3 - Demostrador en tiempo real](#tarea3)
 - [Tarea 4 - Interactivo inspirado en vídeos](#tarea4)
-
 ---
+
 <a name= "librerias"></a>
-## Librerías utilizaadas
-- **OpenCV (`cv2`)**: Procesamiento de imágenes y vídeo, detección de bordes (Canny, Sobel), filtros, umbralizado, captura de webcam y primitivas gráficas.  
-- **NumPy (`numpy`)**: Operaciones matriciales, reducción y conteo de píxeles en imágenes.  
-- **Matplotlib (`matplotlib.pyplot`)**: Visualización de gráficos y representación de distribuciones de píxeles por filas y columnas.  
-- **OS (`os`)**: Gestión de directorios y rutas para guardar y cargar imágenes de salida.  
+## Librerías utilizadas
+[![OpenCV](https://img.shields.io/badge/OpenCV-%23FD8C00?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)  
+- Procesamiento de imágenes y vídeo en tiempo real.  
+- Detección de bordes (Canny, Sobel).  
+- Aplicación de filtros.  
+
+[![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)  
+- Operaciones matriciales.  
+- Reducción, conteo y manipulación de píxeles en imágenes.  
+- Transformaciones y cálculos estadísticos sobre datos visuales.  
+
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-%23006DBA?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)  
+- Visualización de gráficos y resultados de procesamiento.  
+- Histogramas y distribuciones de píxeles.  
+- Representación por filas y columnas de intensidad.  
+
+[![OS](https://img.shields.io/badge/OS-%2300A300?style=for-the-badge&logo=windows-terminal&logoColor=white)](https://docs.python.org/3/library/os.html)  
+- Gestión de directorios y rutas.  
+- Automatización de guardado y carga de imágenes de salida.  
 ---
 
 <a name="tarea1"></a>
@@ -30,7 +44,7 @@
 
 El objetivo de esta tarea es realizar la **cuenta de píxeles blancos por filas** en una imagen, en lugar de hacerlo por columnas. Se busca determinar el valor máximo de píxeles blancos por fila (`maxfil`) y mostrar las filas que tengan un número de píxeles blancos mayor o igual a 0.90 * `maxfil`.
 
-Para ello, primero se debe **cargar la imagen** `mandril.jpg` desde el disco y **convertirla a escala de grises**, lo que permite detectar bordes utilizando un único canal. A continuación, se aplica el **detector de bordes Canny** (`cv2.Canny(img, threshold1, threshold2)`), en el que `threshold1` y `threshold2` definen los límites para detectar bordes débiles y fuertes, respectivamente. Los píxeles detectados como bordes se representan en blanco (255) y el resto en negro (0).
+Para ello, primero se debe **cargar la imagen** [`mandril.jpg`](recursos/mandril.jpg) desde el disco y **convertirla a escala de grises**, lo que permite detectar bordes utilizando un único canal. A continuación, se aplica el **detector de bordes Canny** (`cv2.Canny(img, threshold1, threshold2)`), en el que `threshold1` y `threshold2` definen los límites para detectar bordes débiles y fuertes, respectivamente. Los píxeles detectados como bordes se representan en blanco (255) y el resto en negro (0).
 
 Una vez obtenida la imagen de bordes, se realiza el **conteo de píxeles blancos por fila** utilizando `cv2.reduce` con la operación de suma. Este valor se normaliza dividiendo por el número de columnas y el valor máximo del píxel (255), obteniendo así el **porcentaje de píxeles blancos por fila**.  
 
@@ -57,7 +71,7 @@ En el resultado gráfico, se puede apreciar que en la imagen se remarcan en colo
 
 El objetivo de esta tarea es **aplicar un umbral a la imagen resultante del filtro Sobel** y posteriormente realizar el **conteo de píxeles blancos por filas y columnas**, similar al análisis realizado previamente con la salida de Canny. A partir de ello,, busca determinar los valores máximos de píxeles blancos por fila y columna, y resaltar las filas y columnas que superen el **90% de este máximo**.
 
-Para ello, al igual que se hizo anteriormente, se cargará la imagen `mandril.jpg` desde disco y se convierte a escala de grises para el filtro de Canny y se aplica un **desenfoque gaussiano** para suavizar el ruido antes del cálculo del gradiente para Sobel.
+Para ello, al igual que se hizo anteriormente, se cargará la imagen [`mandril.jpg`](recursos/mandril.jpg) desde disco y se convierte a escala de grises para el filtro de Canny y se aplica un **desenfoque gaussiano** para suavizar el ruido antes del cálculo del gradiente para Sobel.
 
 A continuación para detectar los bordes con Sobel, se calculan los gradientes horizontales (`sobelx`) y verticales (`sobely`) usando el operador Sobel y  Se obtiene la magnitud del gradiente combinando ambos gradientes y se convirtiéndolo a 8 bits (`sobel8u`).  
 
