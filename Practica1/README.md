@@ -52,7 +52,7 @@ Para optimizar el proceso, se ha optado por ***dos bucles anidados***. En cada p
 
 Finalmente, con la función **`plt.imshow()`** de librería **Matplotlib**, se muestra la imagen generada.
 
-![Ajedrez](salidas/ajedrez.png)
+![Ajedrez](salidas/ajedrez.png){ width="40%" }
 
 <a name="tarea2"></a>
 ## Tarea 2: Crear una imagen estilo Mondrian con las funciones de dibujo de OpenCV
@@ -88,7 +88,7 @@ Para construir la imagen, se ha empleado la librería **OpenCV**, que ofrece dis
      Donde `pt1` y `pt2` son los puntos inicial y final de la línea.
 
 De esta forma, combinando rectángulos de colores primarios y líneas negras, se construye una **imagen digital con el estilo característico de Mondrian**, siendo este el resultado:
-![Mondrian](salidas/mondrian.png)
+![Mondrian](salidas/mondrian.png){ width="40%" }
 
 <a name="tarea3"></a>
 ## TAREA 3: Modificación de los planos de color en una imagen con OpenCV
@@ -151,7 +151,7 @@ Finalmente, la imagen modificada se convierte a su formato original RGB para pod
 
 De esta forma, tal y como muestra la siguiente imagen, se identificaron visualmente los puntos extremos de luminosidad dentro de la imagen, facilitando el análisis de contraste entre distintas zonas.  
 
-![Pixel oscuro y claro ](salidas/pixeles.png)
+![Pixel oscuro y claro ](salidas/pixeles.png){ width="40%" }
 
 ### ¿Si quisieras hacerlo sobre la zona 8x8 más clara/oscura?
 En este caso, en lugar de localizar **píxeles individuales** de máxima y mínima intensidad, se busca la **zona más clara y la más oscura de la imagen** dentro de bloques de **8 píxeles x 8 píxeles**.
@@ -168,7 +168,9 @@ Una vez localizadas las zonas extremas:
 
 En lugar de utilizar **círculos sobre píxeles concretos**, aquí se destacan **áreas completas de 8x8 píxeles**, lo que permite un análisis más global de regiones homogéneas de luminosidad.  
 
+
 ![Pixel oscuro y claro 8x8 ](salidas/pixeles8x8.png)
+
 
 > 💡 Se ha elegido el color **verde** para el bloque más claro ya que, al coincidir la posición del bloque de intensidad mínima con un borde de la imagen, el color blanco no se apreciaba correctamente.
 
