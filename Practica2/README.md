@@ -143,6 +143,9 @@ Este modo muestra el vídeo capturado por la webcam sin aplicar ningún efecto, 
 ```python
 vista = frame.copy()
 ```
+<div align="center">
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/700b71f8-3529-44d0-a91a-24f2def55f65" />
+</div>
 
 **Modo 2: Pixelado + color**
 1. Se reduce la resolución de la imagen para crear un efecto pixelado.
@@ -151,6 +154,10 @@ vista = frame.copy()
   ```python
    cv2.applyColorMap(imagen, cv2.COLORMAP_JET)
    ```
+<div align="center">
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/b5211526-bbe3-4aec-ae82-3be7479adcba" />
+</div>
+
 
 **Modo 3: Bordes de movimiento en color**
 1. Convierte la imagen a escala de grises.
@@ -166,6 +173,9 @@ vista = frame.copy()
   ```python
    cv2.addWeighted(img1, alpha, img2, beta, gamma)
    ```
+<div align="center">
+<img width="395" height="295" alt="image" src="https://github.com/user-attachments/assets/8fa73f5b-5220-4121-9dbd-4f6d661838ec" />
+</div>
 
 <a name="tarea4"></a>
 ## Tarea 4: Tras ver los vídeos [My little piece of privacy](https://www.niklasroy.com/project/88/my-little-piece-of-privacy), [Messa di voce](https://youtu.be/GfoqiyB1ndE?feature=shared) y [Virtual air guitar](https://youtu.be/FIAmyoEpV5c?feature=shared) proponer un demostrador reinterpretando la parte de procesamiento de la imagen, tomando como punto de partida alguna de dichas instalaciones.
@@ -183,6 +193,13 @@ Cada contorno identificado genera un círculo de color en la posición central d
 Cada círculo se almacena en la **lista `circles`**, donde se guarda toda la información necesaria para su visualización y gestión: la posición `(x, y)` del centro, el **radio** del círculo, su **color** y el **tiempo de vida restante** (en frames). En cada iteración del bucle principal, se dibujan todos los círculos presentes en la lista y se decrementa su tiempo de vida. Cuando un círculo alcanza cero, se elimina de la lista, lo que permite que los elementos visuales **aparezcan y desaparezcan de forma fluida** manteniendo la interactividad.  
 
 La visualización del demostrador se realiza de manera interactiva: se muestra lado a lado la máscara de movimiento con las zonas que cambian respecto al fondo y la imagen real con los círculos superpuestos. Esto permite al usuario observar simultáneamente cómo se detecta el movimiento y cómo este se traduce en elementos visuales, cerrando el ciclo de interacción.
+
+<div align="center">
+<img width="1583" height="598" alt="image" src="https://github.com/user-attachments/assets/51573321-ce9a-4ce9-bbf8-b576770baf28" />
+</div>
+
+
+En la imagen puede observarse cómo, en el panel izquierdo, la máscara de movimiento resalta en blanco las regiones que presentan cambios respecto al fondo. Paralelamente, en el panel derecho se muestra la imagen original, sobre la cual se superponen círculos que marcan esas mismas zonas detectadas, permitiendo visualizar de forma directa la correspondencia entre la detección y su representación en la escena.
 
 > Uso de la IA:
 - Explicación de algunas funciones de las librerías **OpenCV** y **MatplotLib**
