@@ -74,7 +74,7 @@ El objetivo de esta tarea es **aplicar un umbral a la imagen resultante del filt
 
 Para ello, al igual que se hizo anteriormente, se cargará la imagen [`mandril.jpg`](recursos/mandril.jpg) desde disco y se convierte a escala de grises para el filtro de Canny y se aplica un **desenfoque gaussiano** para suavizar el ruido antes del cálculo del gradiente para Sobel.
 
-A continuación para detectar los bordes con Sobel, se calculan los gradientes horizontales (`sobelx`) y verticales (`sobely`) usando el operador Sobel y se obtiene la magnitud del gradiente, combinando ambos gradientes y convirtiéndolo a 8 bits (`sobel8u`).  
+A continuación para detectar los bordes con Sobel, se calculan los gradientes horizontales (`sobelx`) y verticales (`sobely`) usando el operador Sobel y se obtiene la magnitud del gradiente combinando ambos gradientes y convirtiéndolo a 8 bits (`sobel8u`).  
 
 Ahora, se aplica un **umbral fijo** a la imagen de Sobel para obtener una imagen binaria (`sobel_umbral`), donde los píxeles de borde se representan en blanco (255).
 
