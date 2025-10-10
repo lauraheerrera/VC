@@ -47,17 +47,11 @@
 
 ---
 <a name="tarea2"></a>
-## TAREA 2: La tarea consiste en extraer características (geométricas y/o visuales) de las tres imágenes completas de partida, y *aprender* patrones que permitan identificar las partículas en nuevas imágenes. Para ello se proporciona como imagen de test *MPs_test.jpg* y sus correpondientes anotaciones *MPs_test_bbs.csv* con la que deben obtener las métricas para su propuesta de clasificación de microplásticos, además de la matriz de confusión. La matriz de confusión permitirá mostrar para cada clase el número de muestras que se clasifican correctamente de dicha clase, y el número de muestras que se clasifican incorrectamente como perteneciente a una de las otras dos clases.
+## TAREA 2: La tarea consiste en extraer características (geométricas y/o visuales) de las tres imágenes completas de partida, y *aprender* patrones que permitan identificar las partículas en nuevas imágenes. 
+- **Salida:** Imágenes comparativas:
+- [`salidas/comparativa_real_predicha.jpg`](salidas/comparativa_real_predicha.jpg)
+- [`salidas/matriz_confusion.jpg`](salidas/matriz_confusion.jpg)
 
-En el trabajo [SMACC: A System for Microplastics Automatic Counting and Classification](https://doi.org/10.1109/ACCESS.2020.2970498), las características geométricas utilizadas fueron:
-
-- Área en píxeles
-- Perímetro en píxeles
-- Compacidad (relación entre el cuadrado del perímetro y el área de la partícula)
-- Relación del área de la partícula con la del contenedor
-- Relación del ancho y el alto del contenedor
-- Relación entre los ejes de la elipse ajustada
-- Definido el centroide, relación entre las distancias menor y mayor al contorno
 
 Esta tarea implementa un **sistema de clasificación de microplásticos** en imágenes, utilizando técnicas de **visión por computador**. A partir de imágenes de referencia, el sistema **extrae características geométricas y de color** de cada partícula, entrena un clasificador simple basado en distancia euclidiana ponderada, y evalúa su rendimiento en una imagen de prueba con anotaciones.
 
@@ -122,9 +116,9 @@ clasificar_contorno(...)
 clasificar_imagen_con_anotaciones(...)
 ```
 Procesa una imagen completa y sus anotaciones (desde un CSV):  
-- Detecta contornos.  
-- Clasifica cada objeto dentro de las regiones anotadas.  
-- Devuelve las etiquetas reales y predichas junto con la imagen combinada para visualización.  
+- Carga la imagen de test (`MPs_test.jpg`) y sus anotaciones (`MPs_test_bbs.csv`).
+- Detecta los contornos y clasifica cada uno de los objetos dentro de las regiones anotadas.
+- Devuelve las etiquetas reales (`y_true`), las predichas (`y_pred`) y la imagen combinada con ambas visualizaciones.
 
 ---
 
@@ -133,7 +127,9 @@ mostrar_resultado_visual(y_true, y_pred, imagen_combined)
 ```
 - Muestra visualmente los resultados de clasificación (reales vs predichos) y calcula la precisión global del modelo.
 
-![Resultado visual](salidas/comparacion_real_predicha.jpg)
+<div align="center">
+  <img src="salidas/comparacion_real_predicha.jpg" width="80%">
+</div>
 
 Tal y como se observa en la imagen, la parte izquierda muestra la clasificación real (según las anotaciones del archivo CSV) y la parte derecha muestra la clasificación predicha por el modelo.
 
@@ -152,13 +148,16 @@ En general, la mayoría de los objetos coinciden correctamente entre ambas imág
 ```py 
 mostrar_matriz_confusion(y_true, y_pred, clases)
 ```
-- Genera un **heatmap de la matriz de confusión** con Seaborn para visualizar los aciertos y errores del clasificador.  
+- Genera un **heatmap de la matriz de confusión** con `Seaborn` para visualizar los aciertos y errores del clasificador.
+
+La matriz de confusión es una herramienta que muestra, para cada clase real, cómo el clasificador asignó sus **predicciones**. En ella, cada **fila** representa las **etiquetas reales** y cada **columna** las **etiquetas predichas**.
+De este modo, la matriz permite visualizar para cada clase el número de muestras clasificadas correctamente (cuando la predicción coincide con la etiqueta real) y el número de muestras clasificadas incorrectamente como pertenecientes a alguna de las otras clases.
 
 La matriz de confusión obtenida es: 
-![Matriz de confusión](salidas/matriz_confusion.jpg)
 
-La **matriz de confusión** muestra, para cada clase real, cómo el clasificador asignó las predicciones.  
-Cada fila representa las **etiquetas reales**, y cada columna las **etiquetas predichas**.
+<div align="center">
+  <img src="salidas/matriz_confusion.jpg" width="50%">
+</div>
 
 Interpretación:
 - **Diagonal principal (37, 24, 9):** son los aciertos del modelo → el objeto se clasificó correctamente.  
@@ -200,3 +199,4 @@ Esta función calcula las métricas del clasificador:
 - El F1-score de 73.67 % refleja un equilibrio adecuado entre precisión y cobertura.
 
 En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
+
