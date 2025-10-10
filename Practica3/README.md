@@ -185,12 +185,18 @@ Sin embargo, se intentó cambiar el peso de las distintas características pero,
 imprimir_metricas(y_true, y_pred)
 ```
 Esta función calcula las métricas del clasificador:
-| Métrica | Descripción | Valor (%) |
-|----------|--------------|-------|
-| **Exactitud (Accuracy)** | Porcentaje total de clasificaciones correctas sobre todas las predicciones. | 72.16|
-| **Precisión** | Qué tan precisas son las predicciones positivas (por clase). Indica el nivel de “falsos positivos” cometidos. | 75.25|
-| **Sensibilidad (Recall)** | Mide la capacidad del modelo para detectar correctamente todos los objetos de una clase (minimiza los falsos negativos). | 72.16|
-| **F1-Score** | Promedio armónico entre precisión y recall; balance entre exactitud y cobertura. | 73.67|
+| **Métrica** | **Descripción** | **Fórmula** | **Valor (%)** |
+|--------------|------------------|--------------|----------------|
+| **Exactitud (Accuracy)** | Porcentaje total de clasificaciones correctas sobre todas las predicciones. | `Accuracy = (TP + TN) / (TP + TN + FP + FN)` | **72.16** |
+| **Precisión (Precision)** | Qué tan precisas son las predicciones positivas (por clase). Indica el nivel de “falsos positivos” cometidos. | `Precision = TP / (TP + FP)` | **75.25** |
+| **Sensibilidad (Recall)** | Mide la capacidad del modelo para detectar correctamente todos los objetos de una clase (minimiza los falsos negativos). | `Recall = TP / (TP + FN)` | **72.16** |
+| **F1-Score** | Promedio armónico entre precisión y recall; balance entre exactitud y cobertura. | `F1 = 2 * (Precision * Recall) / (Precision + Recall)` | **73.67** |
+
+> **Leyenda de términos:**  
+> - **TP:** Verdaderos Positivos  
+> - **TN:** Verdaderos Negativos  
+> - **FP:** Falsos Positivos  
+> - **FN:** Falsos Negativos  
 
 ### 📈 Interpretación de las métricas:
 - El modelo logra un rendimiento moderado-alto, identificando correctamente alrededor del 72 % de los microplásticos.
@@ -198,6 +204,7 @@ Esta función calcula las métricas del clasificador:
 - El F1-score de 73.67 % refleja un equilibrio adecuado entre precisión y cobertura.
 
 En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
+
 
 
 
