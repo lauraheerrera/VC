@@ -49,9 +49,8 @@
 <a name="tarea2"></a>
 ## TAREA 2: La tarea consiste en extraer características (geométricas y/o visuales) de las tres imágenes completas de partida, y *aprender* patrones que permitan identificar las partículas en nuevas imágenes. 
 - **Salida:** Imágenes comparativas:
-- [`salidas/comparativa_real_predicha.jpg`](salidas/comparativa_real_predicha.jpg)
-- [`salidas/matriz_confusion.jpg`](salidas/matriz_confusion.jpg)
-
+  - [`salidas/comparativa_real_predicha.jpg`](salidas/comparativa_real_predicha.jpg)
+  - [`salidas/matriz_confusion.jpg`](salidas/matriz_confusion.jpg)
 
 Esta tarea implementa un **sistema de clasificación de microplásticos** en imágenes, utilizando técnicas de **visión por computador**. A partir de imágenes de referencia, el sistema **extrae características geométricas y de color** de cada partícula, entrena un clasificador simple basado en distancia euclidiana ponderada, y evalúa su rendimiento en una imagen de prueba con anotaciones.
 
@@ -199,4 +198,5 @@ Esta función calcula las métricas del clasificador:
 - El F1-score de 73.67 % refleja un equilibrio adecuado entre precisión y cobertura.
 
 En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
+
 
