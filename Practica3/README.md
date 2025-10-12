@@ -55,7 +55,7 @@ Con esta información y las dimensiones reales de monedas en milímetros, se cal
 El resultado final mostrará:
 * Las monedas detectadas
 * El valor estimado de cada moneda
-* El total dinero presente en la imagen
+* El total dinero presente en la imagen  
 
 
 ### ⚙️ Funciones principales
@@ -348,6 +348,7 @@ En conjunto, los resultados son satisfactorios considerando la simplicidad del c
 - Refactorización del código para hacerlo modular
 - Redacción y mejora de docstrings
 - Estructura y redacción del Readme
+
 
 
 
