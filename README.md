@@ -49,11 +49,13 @@ Estas ramas siguen la convención de nombres: ```P<num_practica>```
 Por ejemplo:
 - [P1](https://github.com/lauraheerrera/VC/tree/P1): Desarrollo de la Práctica 1
 - [P2](https://github.com/lauraheerrera/VC/tree/P2): Desarrollo de la Práctica 2
+- [P3](https://github.com/lauraheerrera/VC/tree/P3): Desarrollo de la Práctica 3
 
 --- 
 ## Prácticas
 - **Práctica 1:** [Enlace a la Práctica 1](https://github.com/lauraheerrera/VC/tree/main/Practica1)
 - **Práctica 2:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tre/main/Practica2)  
+- **Práctica 3:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tre/main/Practica3) 
 
 ---
 ## Requisitos
