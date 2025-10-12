@@ -146,10 +146,48 @@ Gracias a estas condiciones, la detección mediante el método de **umbral y con
 
 Esto ocurre porque la relación entre los radios de las monedas y los reales, al no existir distorsiones, se mantienen constantes y proporcionales.
 
-
 <div align="center">
-  <img src="salidas/monedas_ideal_resultado.jpg" width="25%">
+  <img src="salidas/monedas_ideal_resultado.jpg" width="50%">
 </div>
+
+##### Imagen no ideal
+
+<a name="ejemplo1"></a>
+**Ejemplo 1** 
+<div align="center">
+  <img src="salidas/Monedas1_resultado.jpg" width="75%">
+</div>
+
+<a name="ejemplo2"></a>
+**Ejemplo 2**
+<div align="center">
+  <img src="salidas/monedas2_resultado.jpg" width="75%">
+</div>
+
+<a name="ejemplo3"></a>
+**Ejemplo 3**
+<div align="center">
+  <img src="salidas/monedas3_resultado.jpg" width="75%">
+</div>
+
+En las anteriores situacciones, se ha trabajado con imágenes **no ideales**, donde las condiciones son más complejas y no garantizan una detección perfecta, como en la imagen ideal.
+Algunas características de las imágenes no ideales son:
+- Iluminación irregular, con sombras y reflejos que dificultan la segmentación.
+- Distorsiones de perspectiva, que alteran la proporción entre el radio detectado y el real.
+- Objetos que no son monedas presentes en la escena, aumentando la probabilidad de falsos positivos.
+
+Como resultado, algunas monedas no se detectan correctamente. Por ejemplo, en el [Ejemplo 1](#ejemplo1), monedas de 1€ pueden detectarse únicamente por la parte plateada, mientras que la parte dorada no se reconoce.
+
+Asimismo, algunos valores **no se reconocen correctamente** debido a pequeñas variaciones en el tamaño detectado de las monedas o al solapamiento parcial con otras monedas u objetos. Esto puede provocar que algunas monedas sean clasificadas erróneamente, hecho que ocurre en todos los ejemplos. 
+
+[Véase:  [Ejemplo 1](#ejemplo1),  [Ejemplo 2](#ejemplo2),  [Ejemplo 3](#ejemplo3) ]
+
+Asimismo, algunos valores **no se reconocen correctamente** debido a pequeñas variaciones en el tamaño detectado de las monedas o al solapamiento parcial con otras monedas u objetos. Esto puede provocar que monedas de 0.10€, 0.20€ o 0.50€ sean clasificadas erróneamente o marcadas como “no confiables”.
+
+
+Además, el **valor detectado** puede depender de la **moneda de referencia seleccionada**, pues las proporciones reales entre radios se ven afectadas por sombras o deformaciones, lo que provoca variaciones en la estimación final.
+
+Tal y como se comentó anteriormente, el método de **HoughCircles** resulta más robusto frente a variaciones de iluminación o fondos complejos
 
 ---
 <a name="tarea2"></a>
