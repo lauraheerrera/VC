@@ -52,7 +52,7 @@
 Esta tarea tiene como principal objetivo detectar monedas en una imagen y estimar la cantidad total de dinero presente. Para ello, se ha seguido la sugerencia planteada: el programa permite al usuario **seleccionar interactivamente una moneda de referencia** (haciendo clic en ella) e indicar su **valor en euros**.
 Con esta información y las dimensiones reales de monedas en milímetros, se calcula la **escala milímetro - píxel** y se determina el valor de todas las monedas detectadas en la imagen. 
 
-El resultado final mostrará:
+El resultado final mostrará lo siguiente:
 * Las monedas detectadas
 * El valor estimado de cada moneda
 * El total dinero presente en la imagen  
@@ -60,13 +60,13 @@ El resultado final mostrará:
 
 ### ⚙️ Funciones principales
 
-A continuación se describen las principales funciones implementadas para llevar a cabo este proceso:
+A continuación, se describen las principales funciones implementadas para llevar a cabo este proceso:
 ```py 
 cargar_y_preprocesar(ruta_img, metodo='gris')
 ```
 - Carga la imagen desde disco y aplica un preprocesamiento para mejorar la detección:
   - Si se usa el método `gris`, convierte a escala de grises y aplica un desenfoque mediano.
-  - Si se usa `threshold`, convierte a gris y aplica binarización con Otsu para segmentar las monedas.
+  - Si se usa `threshold`, convierte a gris y aplica binarización/umbralizado con Otsu para segmentar las monedas.
 ---
 ```py 
 detectar_monedas(img, metodo='hough', radio_min=40, radio_max=160, area_min=200)
@@ -169,7 +169,7 @@ _Ejemplo 3_
   <img src="salidas/monedas3_resultado.jpg" width="75%">
 </div>
 
-En las anteriores situacciones, se ha trabajado con imágenes **no ideales**, donde las condiciones son más complejas y no garantizan una detección perfecta, como en la imagen ideal.
+En las anteriores situaciones, se ha trabajado con imágenes **no ideales**, donde las condiciones son más complejas y no garantizan una detección perfecta, como en la imagen ideal.
 Algunas características de las imágenes no ideales son:
 - Iluminación irregular, con sombras y reflejos que dificultan la segmentación.
 - Distorsiones de perspectiva, que alteran la proporción entre el radio detectado y el real.
@@ -348,6 +348,7 @@ En conjunto, los resultados son satisfactorios considerando la simplicidad del c
 - Refactorización del código para hacerlo modular
 - Redacción y mejora de docstrings
 - Estructura y redacción del Readme
+
 
 
 
