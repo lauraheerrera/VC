@@ -10,7 +10,7 @@
 ---
 ## Contenidos
 - [Librerías utilizadas](#librerias)
-- [Tarea 1 - Conteo de monedas)](#tarea1)
+- [Tarea 1 - Conteo de monedas](#tarea1)
 - [Tarea 2 - Identificación de microplásticos](#tarea2)
 ---
 
@@ -42,13 +42,119 @@
 --- 
 <a name="tarea1"></a>
 ## TAREA 1: Los ejemplos ilustrativos anteriores permiten saber el número de monedas presentes en la imagen. ¿Cómo saber la cantidad de dinero presente en ella? Sugerimos identificar de forma interactiva (por ejemplo haciendo clic en la imagen) una moneda de un valor determinado en la imagen (por ejemplo de 1€). Tras obtener esa información y las dimensiones en milímetros de las distintas monedas, realiza una propuesta para estimar la cantidad de dinero en la imagen. Muestra la cuenta de monedasW y dinero sobre la imagen. No hay restricciones sobre utilizar medidas geométricas o de color. 
+- **Salida:**
+  - [`salidas/monedas_ideal_resultado.jpg`](salidas/monedas_ideal_resultado.jpg)
+  - [`salidas/Monedas1_resultado.jpg`](salidas/Monedas1_resultado.jpg)
+  - [`salidas/monedas2_resultado.jpg`](salidas/monedas2_resultado.jpg)
+  - [`salidas/monedas3_resultado.jpg`](salidas/monedas3_resultado.jpg)
+
+Esta tarea tiene como principal objetivo detectar monedas en una imagen y estimar la cantidad total de dinero presente. Para ello, se ha seguido la sugerencia planteada: el programa permite al usuario **seleccionar interactivamente una moneda de referencia** (haciendo clic en ella) e indicar su **valor en euros**.
+Con esta información y las dimensiones reales de monedas en milímetros, se calcula la **escala milímetro - píxel** y se determina el valor de todas las monedas detectadas en la imagen. 
+
+El resultado final mostrará:
+* Las monedas detectadas
+* El valor estimado de cada moneda
+* El total dinero presente en la imagen
 
 
+### ⚙️ Funciones principales
+
+A continuación se describen las principales funciones implementadas para llevar a cabo este proceso:
+```py 
+cargar_y_preprocesar(ruta_img, metodo='gris')
+```
+- Carga la imagen desde disco y aplica un preprocesamiento para mejorar la detección:
+  - Si se usa el método `gris`, convierte a escala de grises y aplica un desenfoque mediano.
+  - Si se usa `threshold`, convierte a gris y aplica binarización con Otsu para segmentar las monedas.
+---
+```py 
+detectar_monedas(img, metodo='hough', radio_min=40, radio_max=160, area_min=200)
+```
+- Detecta las monedas presentes en la imagen:
+ - Con `metodo=hough`, usa **Transformada de Hough** para detectar círculos.
+ - Con `metodo=contours`, usa **contornos y círculos mínimos envolventes.**
+Cada moneda detectada se almacena con su centro y su radio en píxeles.
+---
+```py 
+seleccionar_moneda_referencia(img, monedas)
+```
+- Permite al usuario hacer **clic sobre una moneda** en la imagen para seleccionarla como **referencia**.
+- Guarda sus coordenadas y radio, que se usarán para **calcular la escala**.
+---
+```py 
+calcular_escala(ref_moneda)
+```
+- Solicita al usuario el valor de la moneda seleccionada (por ejemplo, 1€ o 0.10€) y calcula la **escala miolímetro - píxel**, comparando el radio detectado con el radio real de esa moneda.
+- Esta escala se usará para estimar el tamaño de las demás monedas.
+---
+```py 
+clasificar_monedas(monedas, escala, rel_tol=0.12, abs_tol_mm=1.5)
+```
+- Convierte el radio de cada moneda de píxeles a milímetros y lo compara con los radios reales de las monedas de euro.
+- Asigna a cada moneda el valor más probable (0.01€, 0.02€, 0.05€, 0.10€, 0.20€, 0.50€, 1€, 2€) y calcula el total acumulado.
+---
+```py 
+crear_rellenos(img, monedas)
+```
+- Genera una imagen en blanco y negro donde las monedas detectadas aparecen como círculos blancos rellenos.
+---
+```py 
+mostrar_resultados(img, img_rellenos, resultados, total, ruta_salida)
+```
+Muestra los resultados de forma visual:
+- Imagen original.
+- Imagen de rellenos.
+- Imagen final con monedas detectadas, su valor y el total.
+Asimismo, guarda la imagen final con las monedas y sus valores en la ruta indicada: `salidas/..._resultado.jpg`
+---
+```py 
+contar_monedas(ruta_img, metodo='hough')
+```
+Integra todas las funciones anteriores:
+1. Carga y preprocesa la imagen.
+2. Detecta las monedas.
+3. Permite seleccionar la moneda de referencia.
+4. Calcula la escala y clasifica las monedas.
+5. Muestra y guarda los resultados finales.
+Devuelve el total detectado y una lista de los resultados individuales.
+---
+
+El programa implementa dos métodos para adaptarse a distintos tipos de imágenes:
+| **Método** | **Descripción** | **Ventajas** | **Inconvenientes** |
+|--------------|------------------|--------------|----------------|
+| **`threshold/contours`** | Segmenta la imagen mediante binarización (umbral) y detecta contornos circulares. | Ideal para imágenes limpias o sintéticas (“imagen ideal”). | En imágenes reales con sombras o brillos, puede fallar o detectar menos monedas. |
+| **`hough`** | Utiliza la Transformada de Hough para detectar círculos directamente sobre la imagen en escala de grises. | Más robusto ante variaciones de iluminación o fondos complejos. | En imágenes ideales, puede dar errores en el cálculo de los valores de las monedas. |
+
+Ya que no se ha sido capaz de obtener buenos resultados para ambas situaciones, se ha desarrollado una versión con ambos métodos:
+- En la imagen ideal, el método por umbral `(threshold/contours)` ofrece mejores resultados.
+- En imágenes reales o no ideales, el método de Hough detecta mejor las monedas.
+
+#### 🔍 Resultados obtenidos
+##### Imagen ideal
+<div align="center">
+  <img src="recursos/tarea1/monedas_ideal.jpg" width="25%">
+</div>
+
+En esta situación, se trabaja con un entorno ideal, donde las condiciones son óptimas para la detección de monedas. Una **imagen ideal** se caracteriza por:
+- Iluminación uniforme, sin sombras ni reflejos.
+- Fondo liso y homogéneo, que contrasta claramente con las monedas.
+- Monedas bien separadas, sin solapamientos ni oclusiones.
+- Enfoque nítido y sin ruido, lo que facilita la detección de bordes y contornos circulares.
+- Escala constante y sin deformaciones de perspectiva.
+
+Gracias a estas condiciones, la detección mediante el método de **umbral y contornos** resulta precisa, permitiendo identificar correctamente el número y el valor de las monedas presentes, independientemente de la moneda de referencia seleccionada.
+
+Esto ocurre porque la relación entre los radios de las monedas y los reales, al no existir distorsiones, se mantienen constantes y proporcionales.
+
+
+<div align="center">
+  <img src="salidas/monedas_ideal_resultado.jpg" width="25%">
+</div>
 
 ---
 <a name="tarea2"></a>
 ## TAREA 2: La tarea consiste en extraer características (geométricas y/o visuales) de las tres imágenes completas de partida, y *aprender* patrones que permitan identificar las partículas en nuevas imágenes. 
-- **Salida:** Imágenes comparativas:
+- **Salida:**
   - [`salidas/comparacion_real_predicha.jpg`](salidas/comparacion_real_predicha.jpg)
   - [`salidas/matriz_confusion.jpg`](salidas/matriz_confusion.jpg)
 
@@ -64,7 +170,6 @@ Extrae un conjunto de **características geométricas y de color** a partir de u
 - Área, perímetro, compacidad, excentricidad.  
 - Relaciones de forma (ancho/alto, área relativa, distancias al centroide).  
 - Estadísticas del color en HSV (media y desviación).
-
 ---
 
 ```py 
@@ -74,7 +179,6 @@ Procesa una imagen completa:
 - Convierte a escala de grises.  
 - Aplica desenfoque y umbral adaptativo para separar objetos del fondo.  
 - Encuentra contornos y calcula sus características con la función anterior.
-
 ---
 
 ```py
@@ -82,14 +186,12 @@ vector_caracteristicas_medio(imagen_path)
 ```
 - Obtiene el **vector medio de características** de todos los objetos de una imagen.
 - Se usa para representar cada clase (tipo de microplástico) de forma promedio.
-
 ---
 
 ```py
 entrenar_clasificador(imagenes_referencia)
 ```
 - Calcula el vector de características medio para cada clase (por ejemplo, FRA, PEL, TAR) usando imágenes de referencia. Estos serán la **base del clasificador**.
-
 ---
 
 ```py 
@@ -108,7 +210,6 @@ clasificar_contorno(...)
 ```
 - Dada una región de interés (bounding box), calcula las características del contorno y las compara con las referencias.
 - Clasifica el objeto según la **distancia euclidiana ponderada más corta**.
-
 ---
 
 ```py 
@@ -118,7 +219,6 @@ Procesa una imagen completa y sus anotaciones (desde un CSV):
 - Carga la imagen de test (`MPs_test.jpg`) y sus anotaciones (`MPs_test_bbs.csv`).
 - Detecta los contornos y clasifica cada uno de los objetos dentro de las regiones anotadas.
 - Devuelve las etiquetas reales (`y_true`), las predichas (`y_pred`) y la imagen combinada con ambas visualizaciones.
-
 ---
 
 ```py 
@@ -162,7 +262,7 @@ Interpretación:
 - **Diagonal principal (37, 24, 9):** son los aciertos del modelo → el objeto se clasificó correctamente.  
 - **Fuera de la diagonal:** representan errores de clasificación (confusiones entre clases).  
 
-#### 🔍 Análisis detallado:
+#### 🔍 Análisis detallado
 - La clase **FRA** (fragmentos) tuvo **37 aciertos**, pero fue confundida **7 veces con PEL** (pellets) y **3 veces con TAR** (tiras).  
   Esto sugiere que algunos fragmentos comparten **formas o colores similares a los pellets**, lo que genera confusión.
   
@@ -198,12 +298,13 @@ Esta función calcula las métricas del clasificador:
 > - **FP:** Falsos Positivos  
 > - **FN:** Falsos Negativos  
 
-### 📈 Interpretación de las métricas:
+### 📈 Interpretación de las métricas
 - El modelo logra un rendimiento moderado-alto, identificando correctamente alrededor del 72 % de los microplásticos.
 - La precisión del 75 % indica que la mayoría de las predicciones son correctas, mientras que un recall similar muestra que el sistema detecta bien las clases, aunque aún pierde algunos objetos.
 - El F1-score de 73.67 % refleja un equilibrio adecuado entre precisión y cobertura.
 
 En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
+
 
 
 
