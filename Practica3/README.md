@@ -41,7 +41,8 @@
 
 --- 
 <a name="tarea1"></a>
-## TAREA 1: Los ejemplos ilustrativos anteriores permiten saber el número de monedas presentes en la imagen. ¿Cómo saber la cantidad de dinero presente en ella? Sugerimos identificar de forma interactiva (por ejemplo haciendo clic en la imagen) una moneda de un valor determinado en la imagen (por ejemplo de 1€). Tras obtener esa información y las dimensiones en milímetros de las distintas monedas, realiza una propuesta para estimar la cantidad de dinero en la imagen. Muestra la cuenta de monedasW y dinero sobre la imagen. No hay restricciones sobre utilizar medidas geométricas o de color. 
+## TAREA 1 
+**Los ejemplos ilustrativos anteriores permiten saber el número de monedas presentes en la imagen. ¿Cómo saber la cantidad de dinero presente en ella? Sugerimos identificar de forma interactiva (por ejemplo haciendo clic en la imagen) una moneda de un valor determinado en la imagen (por ejemplo de 1€). Tras obtener esa información y las dimensiones en milímetros de las distintas monedas, realiza una propuesta para estimar la cantidad de dinero en la imagen. Muestra la cuenta de monedasW y dinero sobre la imagen. No hay restricciones sobre utilizar medidas geométricas o de color.**
 - **Salida:**
   - [`salidas/monedas_ideal_resultado.jpg`](salidas/monedas_ideal_resultado.jpg)
   - [`salidas/Monedas1_resultado.jpg`](salidas/Monedas1_resultado.jpg)
@@ -130,10 +131,8 @@ Ya que no se ha sido capaz de obtener buenos resultados para ambas situaciones, 
 - En imágenes reales o no ideales, el método de Hough detecta mejor las monedas.
 
 #### 🔍 Resultados obtenidos
-##### Imagen ideal
-<div align="center">
-  <img src="recursos/tarea1/monedas_ideal.jpg" width="25%">
-</div>
+
+**Imagen ideal**
 
 En esta situación, se trabaja con un entorno ideal, donde las condiciones son óptimas para la detección de monedas. Una **imagen ideal** se caracteriza por:
 - Iluminación uniforme, sin sombras ni reflejos.
@@ -150,22 +149,22 @@ Esto ocurre porque la relación entre los radios de las monedas y los reales, al
   <img src="salidas/monedas_ideal_resultado.jpg" width="50%">
 </div>
 
-##### Imagen no ideal
+**Imagen no ideal**
 
 <a name="ejemplo1"></a>
-**Ejemplo 1** 
+_Ejemplo 1_
 <div align="center">
   <img src="salidas/Monedas1_resultado.jpg" width="75%">
 </div>
 
 <a name="ejemplo2"></a>
-**Ejemplo 2**
+_Ejemplo 2_
 <div align="center">
   <img src="salidas/monedas2_resultado.jpg" width="75%">
 </div>
 
 <a name="ejemplo3"></a>
-**Ejemplo 3**
+_Ejemplo 3_
 <div align="center">
   <img src="salidas/monedas3_resultado.jpg" width="75%">
 </div>
@@ -344,6 +343,11 @@ Esta función calcula las métricas del clasificador:
 En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
 
 
+> Uso de la IA:
+- Explicación de algunas funciones de las librerías OpenCV y MatplotLib
+- Refactorización del código para hacerlo modular
+- Redacción y mejora de docstrings
+- Estructura y redacción del Readme
 
 
 
