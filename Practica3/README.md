@@ -199,7 +199,7 @@ Esta tarea implementa un **sistema de clasificación de microplásticos** en im�
 
 ### ⚙️ Funciones principales
 
-A continuación se describen las principales funciones implementadas para llevar a cabo este proceso:
+A continuación, se describen las principales funciones implementadas para llevar a cabo este proceso:
 ```py 
 detectar_caracteristicas(contorno, imagen_hsv)
 ```
@@ -340,16 +340,12 @@ Esta función calcula las métricas del clasificador:
 - La precisión del 75 % indica que la mayoría de las predicciones son correctas, mientras que un recall similar muestra que el sistema detecta bien las clases, aunque aún pierde algunos objetos.
 - El F1-score de 73.67 % refleja un equilibrio adecuado entre precisión y cobertura.
 
-En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.
+En conjunto, los resultados son satisfactorios considerando la simplicidad del clasificador y la variabilidad visual de las muestras.  
 
 
 > Uso de la IA:
 - Explicación de algunas funciones de las librerías OpenCV y MatplotLib
 - Refactorización del código para hacerlo modular
 - Redacción y mejora de docstrings
-- Estructura y redacción del Readme
-
-
-
-
+- Estructura y redacción del Readme  
 
