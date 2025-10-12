@@ -44,7 +44,7 @@ La estructura típica es:
 ---
 ## Ramas
 Además de la rama principal, el repositorio cuenta con ramas de desarrollo específicas para cada práctica.
-Estas ramas siguen la convención de nombres: ```P<num_practica>```
+Estas ramas siguen la convención de nombres: ```P<numero_practica>```
 
 Por ejemplo:
 - [P1](https://github.com/lauraheerrera/VC/tree/P1): Desarrollo de la Práctica 1
@@ -98,7 +98,7 @@ cd <carpeta_del_repositorio>
 ```bash
 jupyter notebook <Cuaderno>
 ```
-
+  
 ## Objetivos
 - Aplicar técnicas de visión por computador en problemas prácticos.
 - Aprender a utilizar librerías como OpenCV, NumPy y Matplotlib en proyectos reales.
