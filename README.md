@@ -54,8 +54,8 @@ Por ejemplo:
 --- 
 ## Prácticas
 - **Práctica 1:** [Enlace a la Práctica 1](https://github.com/lauraheerrera/VC/tree/main/Practica1)
-- **Práctica 2:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tre/main/Practica2)  
-- **Práctica 3:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tre/main/Practica3) 
+- **Práctica 2:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tree/main/Practica2)  
+- **Práctica 3:** [Enlace a la Práctica 3](https://github.com/lauraheerrera/VC/tree/main/Practica3) 
 
 ---
 ## Requisitos
