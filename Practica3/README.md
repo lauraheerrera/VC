@@ -149,6 +149,11 @@ Esto ocurre porque la relación entre los radios de las monedas y los reales, al
   <img src="salidas/monedas_ideal_resultado.jpg" width="50%">
 </div>
 
+- Número de monedas detectadas: 8
+- Moneda de referencia seleccionada: 2.00 €
+- Dinero total detectado: 3.88 €
+- Monedas correctas: 8/8
+
 **Imagen no ideal**
 
 <a name="ejemplo1"></a>
@@ -157,17 +162,34 @@ _Ejemplo 1_
   <img src="salidas/Monedas1_resultado.jpg" width="75%">
 </div>
 
+- Número de monedas detectadas: 7
+- Moneda de referencia seleccionada: 2.00 €
+- Dinero total detectado: 6.32 €
+- Monedas correctas: 4/7
+
 <a name="ejemplo2"></a>
 _Ejemplo 2_
 <div align="center">
   <img src="salidas/monedas2_resultado.jpg" width="75%">
 </div>
 
+- Número de monedas detectadas: 5
+- Moneda de referencia seleccionada: 0.05 €
+- Dinero total detectado: 3.35 €
+- Monedas correctas: /5
+
+
 <a name="ejemplo3"></a>
 _Ejemplo 3_
 <div align="center">
   <img src="salidas/monedas3_resultado.jpg" width="75%">
 </div>
+
+- Número de monedas detectadas: 5
+- Moneda de referencia seleccionada: 1.00 €
+- Dinero total detectado: 5.07 €
+- Monedas correctas: 2/5
+
 
 En las anteriores situacciones, se ha trabajado con imágenes **no ideales**, donde las condiciones son más complejas y no garantizan una detección perfecta, como en la imagen ideal.
 Algunas características de las imágenes no ideales son:
@@ -348,6 +370,7 @@ En conjunto, los resultados son satisfactorios considerando la simplicidad del c
 - Refactorización del código para hacerlo modular
 - Redacción y mejora de docstrings
 - Estructura y redacción del Readme
+
 
 
 
