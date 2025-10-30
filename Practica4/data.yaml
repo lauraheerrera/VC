@@ -9,4 +9,4 @@ test: C:/Users/laura/OneDrive/Desktop/VC/Practica4/TGC_RBNW/test/
 nc: 1
 
 # class names
-names: [ 'bib' ]
+names: [ 'license_plate' ]
