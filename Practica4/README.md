@@ -99,7 +99,7 @@ Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y et
     └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/labels">labels/</a>
 </pre>
 
-Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/repartir.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
+Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
 - **80%** del total del dataset se destinó a **entrenamiento y validación**.  
 - **20%** restante se reservó para **pruebas (test)**.  
 - Del **80% inicial**, se dividió de nuevo en:
