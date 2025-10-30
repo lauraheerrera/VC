@@ -6,7 +6,7 @@ epochs: 40
 time: null
 patience: 100
 batch: 4
-imgsz: 416
+imgsz: 512
 save: true
 save_period: -1
 cache: false
@@ -103,4 +103,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: botsort.yaml
-save_dir: C:\Users\laura\OneDrive\Desktop\VC\Practica4\runs\detect\train
+save_dir: C:\Users\Laura\Desktop\Nueva carpeta\VC\Practica4\runs\detect\train
