@@ -228,4 +228,31 @@ Dentro de esta carpeta, se crean subcarpetas por cada ejecución, por ejemplo `t
   - **`best.pt`** → Modelo que obtuvo la mejor precisión durante el entrenamiento.  
   - **`last.pt`** → Modelo final después de completar todas las épocas, aunque no sea el más preciso.
 - **`results.png`** → Gráfica que muestra la evolución de las métricas de entrenamiento: precisión, recall y loss.
+- **`results.csv`** -> Registro época por época de las métricas durante el entrenamiento y la validación. Cada fila corresponde a una éopca
 
+Para determinar qué entrenamiento se considera el mejor, se ha tenido en cuenta las principales métricas, que reflejan la calidad de la detección:
+
+| Métrica                | Qué indica                                             | Consideración para evaluación                                                 |
+| ---------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
+| `metrics/precision(B)` | Qué porcentaje de las predicciones fueron correctas    | Más alto = mejor                                                   |
+| `metrics/recall(B)`    | Qué porcentaje de los objetos reales fueron detectados | Más alto = mejor                                                   |
+| `metrics/mAP50(B)`     | Precisión promedio considerando IoU ≥ 0.5              | Más alto = mejor; ideal >0.7 para muchos casos                     |
+| `metrics/mAP50-95(B)`  | Precisión promedio considerando IoU entre 0.5 y 0.95   | Más robusta que mAP50, porque penaliza predicciones menos precisas |
+
+Otras métricas importantes son las de pérdidas, que reflejan qué tan bien aprende el modelo:
+| Métrica                           | Qué indica                                                  | Consideración para evaluación    |
+| --------------------------------- | ----------------------------------------------------------- | ---------------- |
+| `train/box_loss` y `val/box_loss` | Error de localización (qué tan bien encaja el bounding box) | Más bajo = mejor |
+| `train/cls_loss` y `val/cls_loss` | Error de clasificación (qué tan bien clasifica el objeto)   | Más bajo = mejor |
+| `train/dfl_loss` y `val/dfl_loss` | Loss de distribución focal (refina boxes)                   | Más bajo = mejor |
+
+Para evaluar la calidad de un modelo, se ha priorizado las métricas `*_best` de mAP y pérdidas de validación, ya que reflejan el mejor rendimiento alcanzado durante el entrenamiento.
+
+Sabiendo esto, se ha desarrolado otro script de Pythonque recorre automáticamente todas las carpetas de entrenamiento (`train`,  `train2`, etc.), extrae las métricas de cada ejecución y genera un resumen de los mejores resultados para cada entrenamiento. Esto permite comparar de manera rápida cuál de los modelos obtuvo la mejor precisión global y evaluar otras métricas relevantes.
+
+#### Prioridads para elegir el mejor modelo
+Al comparar los entrenamientos, se ha tenido en cuenta el siguiente criterio:
+1. `mAP50(B)` más alto → La métrica principal para determinar precisión de detección.
+`2. mAP50-95(B)` alto → Evalúa robustez frente a predicciones menos perfectas.
+3. Loss de validación bajos (`val/box_loss`, `val/cls_loss`, `val/dfl_loss`) → Indican que el modelo aprendió bien sin sobreajustarse.
+4. Precision y recall equilibrados → Evita falsos positivos o falsos negativos excesivos, asegurando un modelo confiable.
