@@ -248,11 +248,26 @@ Otras métricas importantes son las de pérdidas, que reflejan qué tan bien apr
 
 Para evaluar la calidad de un modelo, se ha priorizado las métricas `*_best` de mAP y pérdidas de validación, ya que reflejan el mejor rendimiento alcanzado durante el entrenamiento.
 
-Sabiendo esto, se ha desarrolado otro script de Pythonque recorre automáticamente todas las carpetas de entrenamiento (`train`,  `train2`, etc.), extrae las métricas de cada ejecución y genera un resumen de los mejores resultados para cada entrenamiento. Esto permite comparar de manera rápida cuál de los modelos obtuvo la mejor precisión global y evaluar otras métricas relevantes.
-
-#### Prioridads para elegir el mejor modelo
-Al comparar los entrenamientos, se ha tenido en cuenta el siguiente criterio:
+Sabiendo esto, se ha desarrolado otro [script de Python](https://github.com/lauraheerrera/VC/blob/P4/Practica4/metricas.py) que recorre automáticamente todas las carpetas de entrenamiento (`train`,  `train2`, etc.), extrae las métricas de cada ejecución y genera un resumen de los mejores resultados para cada entrenamiento. Además, ordena automáticamente los entrenamientos según el siguiente criterio de prioridad, de manera que el primero en la lista corresponde al modelo mejor considerado:
 1. `mAP50(B)` más alto → La métrica principal para determinar precisión de detección.
-`2. mAP50-95(B)` alto → Evalúa robustez frente a predicciones menos perfectas.
+2. `mAP50-95(B)` alto → Evalúa robustez frente a predicciones menos perfectas.
 3. Loss de validación bajos (`val/box_loss`, `val/cls_loss`, `val/dfl_loss`) → Indican que el modelo aprendió bien sin sobreajustarse.
 4. Precision y recall equilibrados → Evita falsos positivos o falsos negativos excesivos, asegurando un modelo confiable.
+5. 
+> De esta manera, al abrir el [Excel generado por el script](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resumen_entrenamientos_mejores.xlsx), los entrenamientos aparecen ordenados según estas prioridades, facilitando la identificación del mejor modelo sin necesidad de revisar manualmente cada métrica.
+
+La siguiente tabla muestra cómo se presentan los entrenamientos en el _Excel_:
+| Entrenamiento | train/box_loss_best | train/cls_loss_best | train/dfl_loss_best | val/box_loss_best | val/cls_loss_best | val/dfl_loss_best | metrics/precision(B)_best | metrics/recall(B)_best | metrics/mAP50(B)_best | metrics/mAP50-95(B)_best | val_loss_sum | pr_sum |
+|---------------|------------------|-------------------|-------------------|-----------------|-----------------|-----------------|---------------------------|------------------------|----------------------|-------------------------|-------------|--------|
+| train8        | 1.09635          | 1.2899            | 1.05174           | 0.87794         | 0.79134         | 0.96896         | 0.99986                   | 1.0000                 | 0.9950               | 0.74894                 | 2.63824     | 1.99986|
+| train         | 0.96920          | 1.15768           | 0.98533           | 0.96195         | 0.83262         | 0.96145         | 0.99636                   | 1.0000                 | 0.9950               | 0.69216                 | 2.75602     | 1.99636|
+| train3        | 0.96814          | 0.84988           | 0.95254           | 1.02529         | 0.75701         | 1.01806         | 0.99467                   | 1.0000                 | 0.9950               | 0.68005                 | 2.80036     | 1.99467|
+| train9        | 0.96814          | 0.84988           | 0.95254           | 1.02529         | 0.75701         | 1.01806         | 0.99467                   | 1.0000                 | 0.9950               | 0.68005                 | 2.80036     | 1.99467|
+| train2        | 0.72048          | 0.55734           | 0.89550           | 0.94331         | 0.60031         | 0.96383         | 1.00000                   | 0.94927                | 0.99204              | 0.70802                 | 2.50745     | 1.94927|
+| train6        | 0.72048          | 0.55734           | 0.89550           | 0.94331         | 0.60031         | 0.96383         | 1.00000                   | 0.94927                | 0.99204              | 0.70802                 | 2.50745     | 1.94927|
+| train4        | 0.83696          | 1.04597           | 0.90473           | 0.85140         | 0.76191         | 0.94132         | 0.95481                   | 1.0000                 | 0.99192              | 0.76919                 | 2.55463     | 1.95481|
+| train5        | 0.74647          | 0.73564           | 0.91225           | 0.91703         | 0.70769         | 0.97270         | 0.96803                   | 0.9600                 | 0.99071              | 0.74413                 | 2.59742     | 1.92803|
+| train7        | 0.94845          | 2.28946           | 0.95819           | 0.91889         | 1.43075         | 1.05861         | 0.95651                   | 0.9600                 | 0.98724              | 0.72895                 | 3.40825     | 1.91651|
+
+Como se observa, ** `train8` es el modelo recomendado para la detección de matrículas**, y los resultados obtenidos servirán como referencia para optimizar y ajustar futuras iteraciones del entrenamiento de YOLO.
+
