@@ -26,7 +26,7 @@
 El objetivo de esta práctica es desarrollar un prototipo para detectar y seguir vehículos y personas, así como la localización y reconocimiento de las matrículas de dichos vehículos a partir de un vídeo. Para ello, se han empleado modelos de detección de objetos YOLO (You Only Look Once).
 
 <a name="entorno"></a>
-### Prearación del entorno
+### 🖥️ Prearación del entorno
 Para evitar conflictos entre librerías y garantizar la compatibilidad con el módulo de **OCR** utilizado posteriormente, se creó un nuevo entorno de **Conda** con **Python 3.9.5**:
 ```bash
 conda create --name VC_P4 python=3.9.5
@@ -40,7 +40,7 @@ La tercera instrucción instala PyTorch junto con sus librerías asociadas (torc
 El paquete Ultralytics permite acceder a las versiones más recientes de YOLO (YOLOv11 y YOLOv12), facilitando tanto el uso de modelos preentrenados como el entrenamiento de modelos personalizados.
   
 <a name= "dataset"></a>
-### Preparación del dataset para YOLO
+### 🖼️ Preparación del dataset para YOLO
 Para la detección de matrículas, se decidió entrenar un modelo YOLO personalizado, ya que los modelos preentrenados no incluyen esta clase de objeto por defecto.
 
 El proceso seguido fue el siguiente:
@@ -128,7 +128,7 @@ names: [ 'license_plate' ]
 ---
 
 <a name= "entrenamiento"></a>
-### Proceso para el entrenamiento YOLO
+### 📈 Proceso para el entrenamiento YOLO
 A continuación, se entrenará el modelo YOLO:
 #### 1. Activar el entorno para entrenamiento si no se ha hecho previamente
 `conda activate VC_P4`
@@ -203,7 +203,7 @@ Se realizaron 9 entrenamientos para evaluar distintas combinaciones de tamaño d
 Este conjunto permite comparar cómo cada parámetro afecta la precisión y eficiencia del modelo de detección de matrículas.
 
 <a name="resultados"></a>
-### Resultados del entrenamiento
+### 📊 Resultados del entrenamiento
 Tras ejecutar los distintos entrenamientos, YOLO genera automáticamente los resultados en la carpeta:
 Dentro de esta carpeta, se crean subcarpetas por cada ejecución, por ejemplo `train1`, `train2`, etc. Cada subcarpeta contiene los siguientes elementos:
 - **`weights/`** → Modelos entrenados:
