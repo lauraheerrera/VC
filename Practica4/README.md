@@ -99,7 +99,7 @@ Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y et
     └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/labels">labels/</a>
 </pre>
 
-Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
+Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
 - **80%** del total del dataset se destinó a **entrenamiento y validación**.  
 - **20%** restante se reservó para **pruebas (test)**.  
 - Del **80% inicial**, se dividió de nuevo en:
@@ -113,7 +113,8 @@ De esta forma, se garantiza una distribución equilibrada y representativa del d
 #### 4. De `json` a formato YOLO
 Una vez creada la estructura de carpetas del dataset, es importante recordar  que las anotaciones generadas con **LabelMe** se guardan inicialmente en formato `.json`. Para que el modelo **YOLO** pueda utilizarlas, es necesario convertirlas al formato de etiquetas propio del framework.
 
-Para ello, se desarrolló un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/scripts/json_to_txt.py) que recorre todas las etiquetas en formato `.json` y las convierte en archivos `.txt` con la estructura estándar de YOLO:
+Para ello, se desarrolló un [**script en Python**]
+(https://github.com/lauraheerrera/VC/blob/P4/Practica4/scripts/json_to_txt.py) que recorre todas las etiquetas en formato `.json` y las convierte en archivos `.txt` con la estructura estándar de YOLO:
 `<class_id> <x_center> <y_center> <width> <height>`
 
 > [!IMPORTANT]
