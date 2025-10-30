@@ -27,7 +27,7 @@
 [![CUDA](https://img.shields.io/badge/CUDA-%230edc0f?style=for-the-badge&logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-zone)  
 - Librería de aceleración por GPU utilizada por PyTorch.  
 
-[![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics-YOLO-%23FF6F61?style=for-the-badge)](https://github.com/ultralytics/ultralytics)  
+[![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics%20YOLO-%23FF6F61?style=for-the-badge&logo=ultralytics&logoColor=white&labelColor=%23FF6F61)](https://github.com/ultralytics/ultralytics)
 - Implementación moderna de YOLO (YOLOv11).  
 - Facilita entrenamiento, validación y detección de objetos con modelos preentrenados y personalizados.  
 
