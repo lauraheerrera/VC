@@ -13,11 +13,30 @@
 - [Práctica 4 - Detección de vehículos y matrículas](#práctica4) 
     - [Preparación del dataset para YOLO](#dataset) 
     - [Entrenamiento YOLO](#entrenamiento)
+    - [Resultados del entrenamiento](#resultados)
 - [Práctica 4b - ](#tarea2)
 ---
 
-<a name= "librerias"></a>
+<a name="librerias"></a>
 ## Librerías utilizadas
+[![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)  
+- Framework principal para entrenamiento de modelos YOLO.  
+- Soporte de GPU mediante CUDA para acelerar el entrenamiento.  
+- Incluye módulos como `torchvision` y `torchaudio` para manipulación de datos multimodales.  
+
+[![CUDA](https://img.shields.io/badge/CUDA-%230edc0f?style=for-the-badge&logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-zone)  
+- Librería de aceleración por GPU utilizada por PyTorch.  
+
+[![Ultralytics YOLO](https://img.shields.io/badge/Ultralytics-YOLO-%23FF6F61?style=for-the-badge)](https://github.com/ultralytics/ultralytics)  
+- Implementación moderna de YOLO (YOLOv11).  
+- Facilita entrenamiento, validación y detección de objetos con modelos preentrenados y personalizados.  
+
+[![LabelMe](https://img.shields.io/badge/LabelMe-%23F6A623?style=for-the-badge&logo=labelme&logoColor=white)](https://github.com/wkentaro/labelme)  
+- Herramienta gráfica para anotación de imágenes.  
+- Generar archivos `.json` con las coordenadas de objetos (matrículas).  
+
+[![lap](https://img.shields.io/badge/lap-%23007ACC?style=for-the-badge)](https://pypi.org/project/lap/)  
+- Librería para resolver problemas de asignación lineal, útil en seguimiento de objetos.  
 
 --- 
 
