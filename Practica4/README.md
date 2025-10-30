@@ -27,13 +27,16 @@ El objetivo de esta práctica es desarrollar un prototipo para detectar y seguir
 
 <a name="entorno"></a>
 ### Prearación del entorno
-Para evitar conflictos con librerías y garantizar la compatibilidad con el OCR utilizado posteriormente, se creó un nuevo entorno de conda con Python 3.9.5:
+Para evitar conflictos entre librerías y garantizar la compatibilidad con el módulo de **OCR** utilizado posteriormente, se creó un nuevo entorno de **Conda** con **Python 3.9.5**:
 ```bash
 conda create --name VC_P4 python=3.9.5
 conda activate VC_P4
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 pip install ultralytics
 pip install lap
 ```
+La tercera instrucción instala PyTorch junto con sus librerías asociadas (torchvision y torchaudio) y habilita el soporte de CUDA 11.8 para aprovechar la aceleración por GPU.
+
 El paquete Ultralytics permite acceder a las versiones más recientes de YOLO (YOLOv11 y YOLOv12), facilitando tanto el uso de modelos preentrenados como el entrenamiento de modelos personalizados.
   
 <a name= "dataset"></a>
@@ -86,7 +89,7 @@ Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en 
 
 De esta forma, se garantiza una distribución equilibrada y representativa del dataset, cumpliendo con las prácticas recomendadas para el entrenamiento de modelos de detección de objetos.
 
-### 4. De `json` a formato YOLO
+#### 4. De `json` a formato YOLO
 Una vez creada la estructura de carpetas del dataset, es importante recordar  que las anotaciones generadas con **LabelMe** se guardan inicialmente en formato `.json`. Para que el modelo **YOLO** pueda utilizarlas, es necesario convertirlas al formato de etiquetas propio del framework.
 
 Para ello, se desarrolló un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/script.py) que recorre todas las etiquetas en formato `.json` y las convierte en archivos `.txt` con la estructura estándar de YOLO:
@@ -126,3 +129,52 @@ names: [ 'license_plate' ]
 
 <a name= "entrenamiento"></a>
 ### Proceso para el entrenamiento YOLO
+A continuación, se entrenará el modelo YOLO:
+#### 1. Activar el entorno para entrenamiento si no se ha hecho previamente
+`conda activate VC_P4`
+
+#### 2. Comprobar que la GPU está disponible
+```bash
+python -c "import torch; print('Torch version:', torch.__version__); print('CUDA available:', torch.cuda.is_available()); print('GPU:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'None')"
+```
+
+#### 3. Ejecutar entrenamiento YOLO
+Desde la carpeta donde está `data.yaml` y las imágenes:
+```
+cd "C:\Users\laura\OneDrive\Desktop\VC\Practica4"
+```
+1. **Train1 (tamaño de imagen 416, 40 épocas)**
+```bash
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=40
+```
+2. **Train2 (tamaño de imagen 512, 40 épocas)**
+```bash
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=40
+```
+3. Train3 (tamaño de imagen 416, 100 épocas)
+```bash
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=100
+```
+4. Train4 (tamaño de imagen 512, 100 épocas)
+```bash
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=100
+```
+Parámetros:
+- `model` → modelo base/preentrenado (`yolo11n.pt`)
+- `data` → archivo YAML con rutas y clases
+- `imgsz` → tamaño de entrada de las imágenes
+- `batch` → tamaño de batch por iteración
+- `device=0` → GPU utilizada
+- `epochs` → número de épocas de entrenamiento
+  
+El objetivo de los distintos entrenamientos es analizar cómo el tamaño de entrada y el número de épocas afectan la precisión y la capacidad de detección del modelo sobre matrículas, para elegir la configuración óptima.
+
+<a name="resultados"></a>
+### Resultados del entrenamiento
+Tras ejecutar los distintos entrenamientos, YOLO genera automáticamente los resultados en la carpeta:
+Dentro de esta carpeta, se crean subcarpetas por cada ejecución, por ejemplo `train1`, `train2`, etc. Cada subcarpeta contiene los siguientes elementos:
+- **`weights/`** → Modelos entrenados:
+  - **`best.pt`** → Modelo que obtuvo la mejor precisión durante el entrenamiento.  
+  - **`last.pt`** → Modelo final después de completar todas las épocas, aunque no sea el más preciso.
+- **`results.png`** → Gráfica que muestra la evolución de las métricas de entrenamiento: precisión, recall y loss.
+
