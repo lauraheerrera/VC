@@ -143,31 +143,64 @@ Desde la carpeta donde está `data.yaml` y las imágenes:
 ```
 cd "C:\Users\laura\OneDrive\Desktop\VC\Practica4"
 ```
-1. **Train1 (tamaño de imagen 416, 40 épocas)**
+1. Train 1 (T1) – Entrenamiento rápido de referencia
 ```bash
-yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=40
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=40 lr0=0.01
 ```
-2. **Train2 (tamaño de imagen 512, 40 épocas)**
+2. Train 2 (T2) – Entrenamiento largo con imágenes pequeñas
 ```bash
-yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=40
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=100 lr0=0.001
 ```
-3. Train3 (tamaño de imagen 416, 100 épocas)
+3.  Train 3 (T3) – Entrenamiento largo con resolución media
 ```bash
-yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=100
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=100 lr0=0.001
 ```
-4. Train4 (tamaño de imagen 512, 100 épocas)
+4. Train 4 (T4) – Entrenamiento con imágenes grandes y pocas épocas
 ```bash
-yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=100
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=640 batch=4 device=0 epochs=50 lr0=0.001
 ```
+5. Train 5 (T5) – Entrenamiento con batch grande
+```
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=8 device=0 epochs=60 lr0=0.001
+```
+6. Train 6 (T6) – Repetición para comparar consistencia
+```
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=416 batch=4 device=0 epochs=100 lr0=0.001
+```
+7. Train 7 (T7) – Entrenamiento de alta resolución, pocas épocas
+```
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=768 batch=2 device=0 epochs=25 lr0=0.001
+```
+8. Train 8 (T8) – Entrenamiento balanceado entre resolución y duración
+```
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=640 batch=4 device=0 epochs=80 lr0=0.001
+```
+9. Train 9 (T9) – Entrenamiento con learning rate alto
+```
+yolo detect train model=yolo11n.pt data=data.yaml imgsz=512 batch=4 device=0 epochs=100 lr0=0.01
+```
+
 Parámetros:
 - `model` → modelo base/preentrenado (`yolo11n.pt`)
-- `data` → archivo YAML con rutas y clases
-- `imgsz` → tamaño de entrada de las imágenes
-- `batch` → tamaño de batch por iteración
-- `device=0` → GPU utilizada
-- `epochs` → número de épocas de entrenamiento
+- `data` → archivo YAML con rutas y clases (`data.yaml`)
+- `imgsz` → tamaño de entrada de las imágenes (512, 640, etc.)
+- `batch` → tamaño de batch por iteración (4, 8, etc.)
+- `device=0` → GPU utilizada (0 para la primera GPU, cpu si no hay GPU)
+- `epochs` → número de épocas de entrenamiento (40, 100, etc.)
+- `lr0` → learning rate inicial para el entrenamiento (0.001, 0.01, etc.)
   
-El objetivo de los distintos entrenamientos es analizar cómo el tamaño de entrada y el número de épocas afectan la precisión y la capacidad de detección del modelo sobre matrículas, para elegir la configuración óptima.
+Se realizaron 9 entrenamientos para evaluar distintas combinaciones de tamaño de imagen, número de épocas, batch y learning rate:
+- T1: Entrenamiento rápido de referencia, pocas épocas y tamaño medio.
+- T2: Largo con imágenes pequeñas, para evaluar convergencia con menor detalle.
+- T3: Largo con resolución media, comparando precisión con T2.
+- T4: Imágenes grandes y pocas épocas, para capturar detalles sin mucho tiempo de entrenamiento.
+- T5: Batch grande, probando estabilidad y suavidad de la convergencia.
+- T6: Repetición de un entrenamiento largo, para validar consistencia de resultados.
+- T7: Alta resolución y pocas épocas, ideal para matrículas pequeñas o lejanas.
+- T8: Balance entre resolución y duración, buscando un modelo sólido.
+- T9: Learning rate alto, para observar efecto en velocidad de convergencia y estabilidad.
+
+Este conjunto permite comparar cómo cada parámetro afecta la precisión y eficiencia del modelo de detección de matrículas.
 
 <a name="resultados"></a>
 ### Resultados del entrenamiento
