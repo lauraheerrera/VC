@@ -14,6 +14,7 @@
     - [Preparación del dataset para YOLO](#dataset) 
     - [Entrenamiento YOLO](#entrenamiento)
     - [Resultados del entrenamiento](#resultados)
+    - [Instrucciones para ejecutar el script](#script) 
 - [Práctica 4b - ](#tarea2)
 ---
 
@@ -104,14 +105,19 @@ Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en 
 - Del **80% inicial**, se dividió de nuevo en:
   - **80%** para **entrenamiento (train)**
   - **20%** para **validación (val)**
+> [!IMPORTANT]
+> Para ejecutar el script, sigue las instrucciones que se indican en la sección [Instrucciones para ejecutar el script](#script) ].
 
 De esta forma, se garantiza una distribución equilibrada y representativa del dataset, cumpliendo con las prácticas recomendadas para el entrenamiento de modelos de detección de objetos.
 
 #### 4. De `json` a formato YOLO
 Una vez creada la estructura de carpetas del dataset, es importante recordar  que las anotaciones generadas con **LabelMe** se guardan inicialmente en formato `.json`. Para que el modelo **YOLO** pueda utilizarlas, es necesario convertirlas al formato de etiquetas propio del framework.
 
-Para ello, se desarrolló un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/script.py) que recorre todas las etiquetas en formato `.json` y las convierte en archivos `.txt` con la estructura estándar de YOLO:
+Para ello, se desarrolló un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4/scripts/json_to_txt.py) que recorre todas las etiquetas en formato `.json` y las convierte en archivos `.txt` con la estructura estándar de YOLO:
 `<class_id> <x_center> <y_center> <width> <height>`
+
+> [!IMPORTANT]
+> Para ejecutar el script, sigue las instrucciones que se indican en la sección [Instrucciones para ejecutar el script](#script) ].
 
 Cada línea del archivo `.txt` corresponde a un objeto detectado dentro de la imagen y contiene la siguiente información:
 - **class_id** → identificador numérico de la clase del objeto (por ejemplo, `0` para matrículas).  
@@ -126,7 +132,7 @@ De esta forma, las etiquetas resultantes son totalmente compatibles con los mode
 
 #### 5. Archivo de configuración del dataset
 
-Se creó un archivo [`data.yaml`](https://github.com/lauraheerrera/VC/blob/P4/Practica4/data.yaml), que define las rutas del conjunto de datos utilizadas durante el entrenamiento, validación y prueba del modelo.  
+Se creó un archivo [`data.yaml`](https://github.com/lauraheerrera/VC/blob/P4/Practica4/scripts/data.yaml), que define las rutas del conjunto de datos utilizadas durante el entrenamiento, validación y prueba del modelo.  
 Además, este archivo especifica el número de clases y sus nombres, información necesaria para que **YOLO** interprete correctamente el dataset.
 
 El contenido del archivo tiene la siguiente estructura:
@@ -248,12 +254,16 @@ Otras métricas importantes son las de pérdidas, que reflejan qué tan bien apr
 
 Para evaluar la calidad de un modelo, se ha priorizado las métricas `*_best` de mAP y pérdidas de validación, ya que reflejan el mejor rendimiento alcanzado durante el entrenamiento.
 
-Sabiendo esto, se ha desarrolado otro [script de Python](https://github.com/lauraheerrera/VC/blob/P4/Practica4/metricas.py) que recorre automáticamente todas las carpetas de entrenamiento (`train`,  `train2`, etc.), extrae las métricas de cada ejecución y genera un resumen de los mejores resultados para cada entrenamiento. Además, ordena automáticamente los entrenamientos según el siguiente criterio de prioridad, de manera que el primero en la lista corresponde al modelo mejor considerado:
+Sabiendo esto, se ha desarrolado otro [script de Python](https://github.com/lauraheerrera/VC/blob/P4/Practica4/scripts/guardar_metricas_yolo.py) que recorre automáticamente todas las carpetas de entrenamiento (`train`,  `train2`, etc.), extrae las métricas de cada ejecución y genera un resumen de los mejores resultados para cada entrenamiento. Además, ordena automáticamente los entrenamientos según el siguiente criterio de prioridad, de manera que el primero en la lista corresponde al modelo mejor considerado:
 1. `mAP50(B)` más alto → La métrica principal para determinar precisión de detección.
 2. `mAP50-95(B)` alto → Evalúa robustez frente a predicciones menos perfectas.
 3. Loss de validación bajos (`val/box_loss`, `val/cls_loss`, `val/dfl_loss`) → Indican que el modelo aprendió bien sin sobreajustarse.
 4. Precision y recall equilibrados → Evita falsos positivos o falsos negativos excesivos, asegurando un modelo confiable.
-5. 
+
+
+> [!IMPORTANT]
+> Para ejecutar el script, sigue las instrucciones que se indican en la sección [Instrucciones para ejecutar el script](#script) ].
+
 > De esta manera, al abrir el [Excel generado por el script](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resumen_entrenamientos_mejores.xlsx), los entrenamientos aparecen ordenados según estas prioridades, facilitando la identificación del mejor modelo sin necesidad de revisar manualmente cada métrica.
 
 La siguiente tabla muestra cómo se presentan los entrenamientos en el _Excel_:
@@ -270,4 +280,11 @@ La siguiente tabla muestra cómo se presentan los entrenamientos en el _Excel_:
 | train7        | 0.94845          | 2.28946           | 0.95819           | 0.91889         | 1.43075         | 1.05861         | 0.95651                   | 0.9600                 | 0.98724              | 0.72895                 | 3.40825     | 1.91651|
 
 Como se observa, ** `train8` es el modelo recomendado para la detección de matrículas**, y los resultados obtenidos servirán como referencia para optimizar y ajustar futuras iteraciones del entrenamiento de YOLO.
+
+<a name= "script"></a>
+### Instrucciones para ejecutar un script  
+> Abre tu terminal  
+> Sitúate en la carpeta donde se encuentra el script. En mi caso: `cd "C:\Users\Laura\Desktop\VC\Practica 4"`  
+> Ejecuta el script: `python <nombre_script>`
+
 
