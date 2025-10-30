@@ -283,8 +283,8 @@ Como se observa, ** `train8` es el modelo recomendado para la detección de matr
 
 <a name= "script"></a>
 ### Instrucciones para ejecutar un script  
-> Abre tu terminal  
-> Sitúate en la carpeta donde se encuentra el script. En mi caso: `cd "C:\Users\Laura\Desktop\VC\Practica 4"`  
-> Ejecuta el script: `python <nombre_script>`
+1. Abre tu terminal
+2. Sitúate en la carpeta donde se encuentra el script. En mi caso: `cd "C:\Users\Laura\Desktop\VC\Practica 4"`
+3. Ejecuta el script: `python <nombre_script>`
 
 
