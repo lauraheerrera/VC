@@ -57,16 +57,35 @@ Por ejemplo:
 - **Práctica 1:** [Enlace a la Práctica 1](https://github.com/lauraheerrera/VC/tree/main/Practica1)
 - **Práctica 2:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tree/main/Practica2)  
 - **Práctica 3:** [Enlace a la Práctica 3](https://github.com/lauraheerrera/VC/tree/main/Practica3) 
-- **Práctica 4:** [Enlace a la Práctica 4](https://github.com/lauraheerrera/VC/tree/main/Practica4) 
-
+- **Práctica 4:** [Enlace a la Práctica 4](https://github.com/lauraheerrera/VC/tree/main/Practica4)
+  
 ---
+
 ## Requisitos
 - Python
+- Librerías -> Indicadas en cada práctica
 - Jupyter Notebook
 
 Se recomienda crear un entorno virtual para instalar las dependencias.
 
 ---
+
+## Preparar el entorno
+Para configurar el entorno y asegurarte de que todas las librerías están disponibles:
+
+1. **Instalar Anaconda o Miniconda** (si no lo tienes) desde [https://www.anaconda.com/products/distribution](https://www.anaconda.com/products/distribution).
+2. **Crear un entorno virtual** llamado `vision`:
+```bash
+conda create -n vision python=3.11
+conda activate vision
+```
+3. Instalar las librerías necesarias:
+```bash
+pip install numpy opencv-python matplotlib jupyter
+```
+Dentro de cada práctica, se indican las librerías necesarias.
+
+
 ## Uso
 1. Clonar el repositorio:  
 ```bash
@@ -85,5 +104,3 @@ jupyter notebook <Cuaderno>
 - Aplicar técnicas de visión por computador en problemas prácticos.
 - Aprender a utilizar librerías como OpenCV, NumPy y Matplotlib en proyectos reales.
 - Desarrollar habilidades de análisis de imágenes y vídeos, y presentación de resultados de manera visual.
-
-
