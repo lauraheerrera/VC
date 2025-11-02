@@ -15,7 +15,11 @@
     - [Entrenamiento YOLO](#entrenamiento)
     - [Resultados del entrenamiento](#resultados)
     - [Instrucciones para ejecutar el script](#script) 
-- [Práctica 4b - ](#tarea2)
+- [Práctica 4b - Reconocimiento de caracteres](#practica4b)
+    - [Modelos OCR seleccionados](#OCR)
+    - [Preparación del entorno](#OCR-entorno)
+    - [Proceso de reconocimiento de clases y caracteres](#proceso)
+ 
 ---
 
 <a name="librerias"></a>
@@ -280,7 +284,7 @@ La siguiente tabla muestra cómo se presentan los entrenamientos en el _Excel_:
 | train5        | 0.74647          | 0.73564           | 0.91225           | 0.91703         | 0.70769         | 0.97270         | 0.96803                   | 0.9600                 | 0.99071              | 0.74413                 | 2.59742     | 1.92803|
 | train7        | 0.94845          | 2.28946           | 0.95819           | 0.91889         | 1.43075         | 1.05861         | 0.95651                   | 0.9600                 | 0.98724              | 0.72895                 | 3.40825     | 1.91651|
 
-Como se observa, ** `train8` es el modelo recomendado para la detección de matrículas**, y los resultados obtenidos servirán como referencia para optimizar y ajustar futuras iteraciones del entrenamiento de YOLO.
+Como se observa, **`train8` es el modelo recomendado para la detección de matrículas**, y los resultados obtenidos servirán como referencia para optimizar y ajustar futuras iteraciones del entrenamiento de YOLO.
 
 <a name= "script"></a>
 ### Instrucciones para ejecutar un script  
@@ -288,4 +292,98 @@ Como se observa, ** `train8` es el modelo recomendado para la detección de matr
 2. Sitúate en la carpeta donde se encuentra el script. En mi caso: `cd "C:\Users\Laura\Desktop\VC\Practica 4"`
 3. Ejecuta el script: `python <nombre_script>`
 
+--- 
+<a name="práctica4b"></a>
+## Práctica 4b - Reconocimiento de carácteres
+El objetivo de esta práctica, es ampliar el sistema desarrollado en la [Práctica 4](#practica4), dedicado a la detección de vehículos y matrículas, añadiendo un reconocimieno óptico de caracteres (OCR) para identificar las matrículas visibles en los vehículos detectados. 
+
+Para ello, se hará uso de dos modelos de detección (YOLO):
+- Modelo YOLO11vn: modelo preentrenado usado para detectar vehículos y personas
+- Modelo YOLO personalizado: entrenado previamente para detectar matrículas dentro de los vehículos. Este modelo es el elegido tras [comparar los resultados](#resultados).
+Estos modelos permiten localizar y hacer tracking de cada persona y cada coche a lo largo del vídeo de entrada
+
+<a name="OCR"></a>
+### Modelos OCR seleccionados
+Para el reconocimiento de caracteres en las matrículas se han seleccionado dos modelos OCR de distinto funcionamiento: Tesseract y EasyOCR.
+La elección de ambos responde al objetivo de comparar un enfoque basado en reglas y reconocimiento clásico de caracteres (Tesseract), frente a un enfoque moderno basado en redes neuronales profundas (EasyOCR).
+
+<a name="OCR-entorno"></a>
+### Preparación del entorno OCR 
+Para el uso de estos modelos, se necesita una instalación previa:
+- Tessaract:
+    - Descargar los binarios desde [Universidad Manheim](https://github.com/UB-Mannheim/tesseract/wiki)
+    - Ejecutar el archivo
+    - Instalar el wrapper _pytesseract_ en el entorno creado:
+      ```bash
+      conda activate VC_P4
+      pip install pytesseract
+      ```
+- EasyOCR
+      ```
+      pip install easyocr
+      ```
+Asimismo, es necesario la librería `pandas`, diseñada para trabajar con datos tabulares de manera eficiente:
+    ```
+    pip install pandas
+    ```
+
+<a name="proceso"></a>
+### Proceso de reconocimiento de clases y caracteres
+El procesamiento del video se realiza frame a frame, siguiendo estos pasos:
+
+**1. Carga de modelos YOLO**
+- YOLO11n: preentrenado para detectar vehículos y personas.
+- YOLO personalizado: entrenado para detectar matrículas dentro de los vehículos.
+  
+**2. Lectura del video y configuración de salida**
+- Se abre el video de entrada y se obtienen sus propiedades (ancho, alto, FPS).
+- Se crea un objeto para escribir el video resultante con las anotaciones de detección y OCR.
+  
+**3. Detección y tracking de vehículos**
+- Para cada frame, `YOLO11n` detecta vehículos y personas.
+- Se asigna un ID único a cada objeto para poder hacer tracking, es decir, seguirlo a lo largo de los frames.
+- Se dibujan cajas y etiquetas sobre los objetos detectados.
+  
+**4. Recorte de ROI (Region of Interest)**
+
+  Para reducir el área de procesamiento y mejorar la precisión, se recorta la zona del coche detectado:
+    ```python
+    roi_car = frame[y1:y2, x1:x2]
+    ```
+  Dentro de esa ROI, el modelo de matrículas busca la placa, que a su vez se recorta como ROI de la matrícula:
+  ```python
+  matricula_roi = roi_car[my1:my2, mx1:mx2]
+  ```
+**5. Preprocesamiento de la matrícula**
+
+Antes de aplicar OCR, se mejora la imagen para facilitar la lectura de caracteres:
+    - Conversión a escala de grises, pues OCR no necesita color, solo contraste.
+    - Aumento de resolución mediante interpolación para que los caracteres pequeños sean más legibles.
+    - Suavizado con filtros para reducir ruido.
+    - Binarización (umbral adaptativo) para convertir la imagen a blanco y negro puro.
+    - Inversión de colores para asegurar que el texto sea más claro que el fondo.
+    
+**6. Reconocimiento OCR**
+
+Se aplican dos métodos para comparar resultados:
+- EasyOCR: modelo basado en redes neuronales, que devuelve texto y nivel de confianza.
+- Tesseract: OCR clásico con whitelist de caracteres alfanuméricos y configuración adecuada para texto corto (tipo de matrícula).
+  
+**7. Selección del mejor resultado**: Se compara el texto detectado por ambos OCR y se elige el más largo o completo.
+
+**8. Dibujo y anotación en el frame**: Se dibuja un recuadro sobre la matrícula y se escribe el texto detectado.
+
+**9. Almacenamiento de resultados**
+
+- Cada frame y cada objeto detectado se almacena en un diccionario con coordenadas, ID, tipo de objeto, texto OCR y tiempos de procesamiento.
+- Finalmente, todos los diccionarios se convierten en un DataFrame de pandas y se guardan en un CSV:
+```pyhton
+df = pd.DataFrame(resultados)
+df.to_csv("resultados.csv", index=False, sep=";")
+```
+<a name="resultados-4b"></a>
+### 📊 Resultados
+Los resultados obtenidos a partir del video de prueba muestran que ninguno de los modelos de OCR logró identificar las matrículas de manera completa en la mayoría de los vehículos detectados. La principal causa parece estar relacionada con la calidad del video, que presentaba baja resolución, movimiento y condiciones de iluminación desfavorables, dificultando la lectura de los caracteres.
+
+Para evaluar el rendimiento de los modelos de OCR de manera aislada, se realizaron pruebas con imágenes estáticas de matrículas. Se observó que el desempeño es variable según la imagen: en algunas matrículas Tesseract logró detectar parcialmente los caracteres, aunque a veces incluye la “E” inicial de las matrículas europeas, mientras que en otras imágenes EasyOCR obtuvo mejores resultados. Esto confirma que ambos modelos pueden funcionar correctamente bajo condiciones controladas, pero su eficacia depende en gran medida de la calidad y características del material de entrada.
 
