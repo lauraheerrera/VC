@@ -61,36 +61,16 @@ Por ejemplo:
 
 ---
 ## Requisitos
-- Python >= 3.11.5 
-- Librerías:
-
-[![OpenCV](https://img.shields.io/badge/OpenCV-%23FD8C00?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)  [![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)  [![Matplotlib](https://img.shields.io/badge/Matplotlib-%23006DBA?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)  
-
+- Python
 - Jupyter Notebook
 
 Se recomienda crear un entorno virtual para instalar las dependencias.
 
 ---
-
-## Preparar el entorno
-Para configurar el entorno y asegurarte de que todas las librerías están disponibles:
-
-1. **Instalar Anaconda o Miniconda** (si no lo tienes) desde [https://www.anaconda.com/products/distribution](https://www.anaconda.com/products/distribution).
-2. **Crear un entorno virtual** llamado `vision`:
-```bash
-conda create -n vision python=3.11
-conda activate vision
-```
-3. Instalar las librerías necesarias:
-```bash
-pip install numpy opencv-python matplotlib jupyter
-```
-
----
 ## Uso
 1. Clonar el repositorio:  
 ```bash
-git clone https://github.com/tu_usuario/repositorio_vision_computador.git
+git clone https://github.com/lauraheerrera/VC.git
 ```
 2. Entrar en la carpeta de la práctica deseada:
 ```bash
