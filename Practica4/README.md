@@ -387,3 +387,15 @@ Los resultados obtenidos a partir del video de prueba muestran que ninguno de lo
 
 Para evaluar el rendimiento de los modelos de OCR de manera aislada, se realizaron pruebas con imágenes estáticas de matrículas. Se observó que el desempeño es variable según la imagen: en algunas matrículas Tesseract logró detectar parcialmente los caracteres, aunque a veces incluye la “E” inicial de las matrículas europeas, mientras que en otras imágenes EasyOCR obtuvo mejores resultados. Esto confirma que ambos modelos pueden funcionar correctamente bajo condiciones controladas, pero su eficacia depende en gran medida de la calidad y características del material de entrada.
 
+El resultado de ello se puede ver en:
+Vídeo:
+    - [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultado.mp4)
+    - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados.csv)
+Imagen 1:
+    - [Imagen resultante generada](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.jpg)
+    - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.csv)
+Imagen 2:
+    - [Imagen resultante generada](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.jpg)
+    - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.csv)
+    
+    
