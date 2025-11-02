@@ -45,6 +45,28 @@
 [![lap](https://img.shields.io/badge/lap-%23007ACC?style=for-the-badge)](https://pypi.org/project/lap/)  
 - Librería para resolver problemas de asignación lineal, útil en seguimiento de objetos.  
 
+[![OpenCV](https://img.shields.io/badge/OpenCV-%23127C71?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)  
+- Procesamiento de imágenes y videos.  
+- Lectura/escritura de videos, manipulación de frames, recorte de ROI, anotaciones gráficas.  
+
+[![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)  
+- Manipulación eficiente de arrays y operaciones matemáticas.  
+- Soporte de cálculos matriciales y transformaciones de imágenes.  
+
+[![Pandas](https://img.shields.io/badge/Pandas-%23150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)  
+- Almacenamiento y manejo de datos en formato tabular.  
+- Exportación de resultados a CSV para análisis posterior.  
+
+[![Pytesseract](https://img.shields.io/badge/Pytesseract-%23000000?style=for-the-badge&logo=python&logoColor=white)](https://pypi.org/project/pytesseract/)  
+- Wrapper de Tesseract OCR para Python.  
+- Permite reconocimiento de texto en imágenes, especialmente matrículas.  
+
+[![EasyOCR](https://img.shields.io/badge/EasyOCR-%23FF4F00?style=for-the-badge&logo=python&logoColor=white)](https://www.jaided.ai/easyocr/)  
+- OCR moderno basado en redes neuronales profundas.  
+- Reconocimiento de caracteres en imágenes con buena velocidad y estabilidad.  
+
+[![Time](https://img.shields.io/badge/Time-%23000000?style=for-the-badge&logo=python&logoColor=white)](https://docs.python.org/3/library/time.html)  
+- Medición de tiempos de inferencia y procesamiento frame a frame.
 --- 
 
 <a name="práctica4"></a>
@@ -431,3 +453,9 @@ De estos resultados, se puede observar que:
 En conclusión, **EasyOCR** es mucho **más eficiente en tiempo de inferencia**, mientras que **Tesseract**, aunque sigue siendo rápido, es **más variable y tarda más en promedio**. 
 
 Esta información es importante a la hora de decidir qué modelo utilizar en aplicaciones donde la velocidad de procesamiento es crítica, como la detección en tiempo real.
+
+> Uso de la ia
+- Generación de scripts
+- Explicación de algunas funciones
+- Ayuda con incompatibilidad de librerías
+- Estructura y redacción del Readme
