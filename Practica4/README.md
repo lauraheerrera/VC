@@ -19,6 +19,8 @@
     - [Modelos OCR seleccionados](#OCR)
     - [Preparación del entorno](#OCR-entorno)
     - [Proceso de reconocimiento de clases y caracteres](#proceso)
+    - [Resultados modelos OCR](#resultados-4b)
+    - [Diferencia de los tiempos de inferencia](#tiempos)
  
 ---
 
@@ -50,7 +52,7 @@
 El objetivo de esta práctica es desarrollar un prototipo para detectar y seguir vehículos y personas, así como la localización y reconocimiento de las matrículas de dichos vehículos a partir de un vídeo. Para ello, se han empleado modelos de detección de objetos YOLO (You Only Look Once).
 
 <a name="entorno"></a>
-### 🖥️ Prearación del entorno
+### 🖥️ Preparación del entorno
 Para evitar conflictos entre librerías y garantizar la compatibilidad con el módulo de **OCR** utilizado posteriormente, se creó un nuevo entorno de **Conda** con **Python 3.9.5**:
 ```bash
 conda create --name VC_P4 python=3.9.5
@@ -303,12 +305,12 @@ Para ello, se hará uso de dos modelos de detección (YOLO):
 Estos modelos permiten localizar y hacer tracking de cada persona y cada coche a lo largo del vídeo de entrada
 
 <a name="OCR"></a>
-### Modelos OCR seleccionados
+### 🔠 Modelos OCR seleccionados
 Para el reconocimiento de caracteres en las matrículas se han seleccionado dos modelos OCR de distinto funcionamiento: Tesseract y EasyOCR.
 La elección de ambos responde al objetivo de comparar un enfoque basado en reglas y reconocimiento clásico de caracteres (Tesseract), frente a un enfoque moderno basado en redes neuronales profundas (EasyOCR).
 
 <a name="OCR-entorno"></a>
-### Preparación del entorno OCR 
+### 💻 Preparación del entorno OCR 
 Para el uso de estos modelos, se necesita una instalación previa:
 - Tessaract:
     - Descargar los binarios desde [Universidad Manheim](https://github.com/UB-Mannheim/tesseract/wiki)
@@ -328,7 +330,7 @@ Asimismo, es necesario la librería `pandas`, diseñada para trabajar con datos 
     ```
 
 <a name="proceso"></a>
-### Proceso de reconocimiento de clases y caracteres
+### 🔍 Proceso de reconocimiento de clases y caracteres
 El procesamiento del video se realiza frame a frame, siguiendo estos pasos:
 
 **1. Carga de modelos YOLO**
@@ -400,7 +402,6 @@ El resultado de ello se puede ver en:
 
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.csv)
 
-
 #### Imagen 2
 - Imagen resultante generada
 <div align="center">
@@ -408,3 +409,25 @@ El resultado de ello se puede ver en:
 </div>
 
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.csv)
+
+<a name="tiempos"></a>
+### ⌛ Diferencia de los tiempos de inferencia
+Dado el [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados.csv), se puede hacer una pequeña comparación del tiempo de inferencia. Se conoce como tiempo de inferencia al tiempo que tarda un modelo en procesar un único frame y generar su resultado (en este caso, la detección y reconocimiento de matrículas).
+
+A partir de los datos del CSV, se calcularon el **promedio** y la **desviación estándar** del tiempo de inferencia para los modelos EasyOCR y Tesseract:
+| Modelo    | Promedio (s) | Desviación estándar (s) |
+| --------- | ------------ | ----------------------- |
+| EasyOCR   | 0,000595     | 0,00326                 |
+| Tesseract | 0,00571      | 0,02713                 |
+
+<div align="center">
+<img width="443" height="180" alt="image" src="https://github.com/user-attachments/assets/87ad14d5-67e9-409e-9922-c93136653392" />
+</div>
+
+De estos resultados, se puede observar que:
+- **Velocidad media**: EasyOCR es aproximadamente 10 veces más rápido que Tesseract, con un tiempo medio prácticamente despreciable frente a Tesseract.
+- **Consistencia**: La desviación estándar de EasyOCR es mucho menor, lo que indica que sus tiempos de inferencia son muy estables entre distintos frames. Por el contrario, Tesseract presenta una mayor variabilidad, con algunos frames tardando significativamente más que otros.
+
+En conclusión, **EasyOCR** es mucho **más eficiente en tiempo de inferencia**, mientras que **Tesseract**, aunque sigue siendo rápido, es **más variable y tarda más en promedio**. 
+
+Esta información es importante a la hora de decidir qué modelo utilizar en aplicaciones donde la velocidad de procesamiento es crítica, como la detección en tiempo real.
