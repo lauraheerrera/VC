@@ -59,8 +59,8 @@ Por ejemplo:
 
 ---
 ## Requisitos
-- Python >= 3.11.5 
-- Librerías: `OpenCV`, `NumPy`, `Matplotlib`
+- Python
+- Librerías -> Indicadas en cada práctica
 - Jupyter Notebook
 
 Se recomienda crear un entorno virtual para instalar las dependencias.
@@ -80,12 +80,13 @@ conda activate vision
 ```bash
 pip install numpy opencv-python matplotlib jupyter
 ```
+Dentro de cada práctica, se indican las librerías necesarias
 
----
+
 ## Uso
 1. Clonar el repositorio:  
 ```bash
-git clone https://github.com/tu_usuario/repositorio_vision_computador.git
+git clone https://github.com/lauraheerrera/VC.git
 ```
 2. Entrar en la carpeta de la práctica deseada:
 ```bash
@@ -95,8 +96,9 @@ cd <carpeta_del_repositorio>
 ```bash
 jupyter notebook <Cuaderno>
 ```
-
+  
 ## Objetivos
 - Aplicar técnicas de visión por computador en problemas prácticos.
 - Aprender a utilizar librerías como OpenCV, NumPy y Matplotlib en proyectos reales.
 - Desarrollar habilidades de análisis de imágenes y vídeos, y presentación de resultados de manera visual.
+
