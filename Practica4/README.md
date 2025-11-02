@@ -394,8 +394,14 @@ El resultado de ello se puede ver en:
 
 #### Imagen 1
 - [Imagen resultante generada](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.jpg)
+<div align="center">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.jpg" alt="Imagen 1" width="300">
+</div>
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.csv)
 
 #### Imagen 2
 - [Imagen resultante generada](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.jpg)
+<div align="center">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.jpg" alt="Imagen 2" width="300">
+</div>
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.csv)
