@@ -95,7 +95,10 @@ El proceso seguido fue el siguiente:
 #### 1. Obtención y preparación del dataset
 Se recopiló un conjunto de imágenes que contuvieran vehículos con matrículas visibles.  
 Este dataset fue creado de forma colaborativa entre los miembros del equipo de la asignatura, garantizando la variedad de condiciones (ángulos, iluminación, tipos de vehículos, etc.).  
-En total, se recopilaron 150 imágenes, que se guardaron en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo), para posteriormente etiquetarlas y, una vez etiquetadas organizarlas siguiendo la estructura de YOLO.
+En total, se recopilaron 150 imágenes, que se guardaron en la carpeta _todo_, para posteriormente etiquetarlas y, una vez etiquetadas organizarlas siguiendo la estructura de YOLO.
+
+Por motivos de espacio y buenas prácticas, la carpeta del dataset (TGC_RBNW/) se ha añadido al archivo .gitignore, por lo que no forma parte del repositorio.
+No obstante, el dataset completo puede consultarse o descargarse desde el siguiente enlace: [Enlace dataset](https://drive.google.com/drive/folders/1vX6mWZiZlpHOmNURqQK7ZL78xI9JnJk9?usp=sharing)
 
 #### 2. Anotación de imágenes
 Para anotar las matrículas dentro de las imágenes se utilizó la herramienta **LabelMe**, que permite dibujar regiones rectangulares alrededor del objeto de interés (la matrícula).  
@@ -114,20 +117,20 @@ Cada imagen anotada genera un archivo `.json` con la información de las regione
 Las imágenes recolectadas se organizaron siguiendo la estructura esperada por **YOLO** para el entrenamiento, validación y prueba del modelo.  
 Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y etiquetas (`labels/`).
 
-<pre>
-📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW">TGC_RBNW/</a>
-├── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train">train/</a>
-│   ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train/images">images/</a>
-│   └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train/labels">labels/</a>
-├── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val">val/</a>
-│   ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val/images">images/</a>
-│   └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val/labels">labels/</a>
-└── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test">test/</a>
-    ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/images">images/</a>
-    └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/labels">labels/</a>
-</pre>
+```
+📂 TGC_RBNW/
+├── 📂 train/
+│   ├── 📂 images/
+│   └── 📂 labels/
+├── 📂 val/
+│   ├── 📂 images/
+│   └── 📂 labels/
+└── 📂 test/
+    ├── 📂 images/
+    └── 📂 labels/
+```
 
-Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
+Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta _todo_ y las dividió en tres subconjuntos de forma automática:
 - **80%** del total del dataset se destinó a **entrenamiento y validación**.  
 - **20%** restante se reservó para **pruebas (test)**.  
 - Del **80% inicial**, se dividió de nuevo en:
