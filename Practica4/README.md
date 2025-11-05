@@ -117,6 +117,7 @@ Cada imagen anotada genera un archivo `.json` con la información de las regione
 Las imágenes recolectadas se organizaron siguiendo la estructura esperada por **YOLO** para el entrenamiento, validación y prueba del modelo.  
 Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y etiquetas (`labels/`).
 
+```
 📂 TGC_RBNW/
 ├── 📂 train/
 │   ├── 📂 images/
@@ -127,6 +128,7 @@ Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y et
 └── 📂 test/
     ├── 📂 images/
     └── 📂 labels/
+```
 
 Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta _todo_ y las dividió en tres subconjuntos de forma automática:
 - **80%** del total del dataset se destinó a **entrenamiento y validación**.  
