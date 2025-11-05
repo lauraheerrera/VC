@@ -416,24 +416,24 @@ Para evaluar el rendimiento de los modelos de OCR de manera aislada, se realizar
 
 El resultado de ello se puede ver en:  
 #### Vídeo
-- [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultado.mp4)
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados.csv)
+- [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/resultado.mp4)
+- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/resultados.csv)
 
 #### Imagen 1
 - Imagen resultante generada
 <div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.jpg" alt="Imagen 1" width="300">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/4280KSW_resultado.jpg" alt="Imagen 1" width="300">
 </div>
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.csv)
+- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/4280KSW_resultado.csv)
 
 #### Imagen 2
 - Imagen resultante generada
 <div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.jpg" alt="Imagen 2" width="300">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/0303BML_6225_aug5_resultado.jpg" alt="Imagen 2" width="300">
 </div>
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.csv)
+- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/0303BML_6225_aug5_resultado.csv)
 
 <a name="tiempos"></a>
 ### ⌛ Diferencia de los tiempos de inferencia
