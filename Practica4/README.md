@@ -436,7 +436,10 @@ Posteriormente, se compararon las matrículas reconocidas con la matrícula real
 De este modo, las imágenes sirvieron tanto para entrenar y evaluar la capacidad de detección de las matrículas, como para medir el rendimiento comparativo entre los dos sistemas OCR empleados.
 
 Los resultados comparativos se representan en la siguiente gráfica, donde se muestra la exactitud y la similitud media obtenida por cada modelo OCR:
-![Gráfica de precisión OCR](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/precision_ocr.png)
+
+<p align="center">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/precision_ocr.png" alt="Gráfica de precisión OCR" width="50%">
+</p>
 
 
 <a name="tiempos"></a>
