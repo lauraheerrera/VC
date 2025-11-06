@@ -412,28 +412,31 @@ df.to_csv("resultados.csv", index=False, sep=";")
 ### 📊 Resultados
 Los resultados obtenidos a partir del video de prueba muestran que ninguno de los modelos de OCR logró identificar las matrículas de manera completa en la mayoría de los vehículos detectados. La principal causa parece estar relacionada con la calidad del video, que presentaba baja resolución, movimiento y condiciones de iluminación desfavorables, dificultando la lectura de los caracteres.
 
-Para evaluar el rendimiento de los modelos de OCR de manera aislada, se realizaron pruebas con imágenes estáticas de matrículas. Se observó que el desempeño es variable según la imagen: en algunas matrículas Tesseract logró detectar parcialmente los caracteres, aunque a veces incluye la “E” inicial de las matrículas europeas, mientras que en otras imágenes EasyOCR obtuvo mejores resultados. Esto confirma que ambos modelos pueden funcionar correctamente bajo condiciones controladas, pero su eficacia depende en gran medida de la calidad y características del material de entrada.
-
 El resultado de ello se puede ver en:  
 #### Vídeo
 - [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/resultado.mp4)
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/resultados.csv)
 
-#### Imagen 1
-- Imagen resultante generada
-<div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/4280KSW_resultado.jpg" alt="Imagen 1" width="300">
-</div>
+Por ello, para medir la precisión de cada modelo OCR (EasyOCR y Tesseract), se ha utilizado un conjunto de imágenes de vehículos en las que la matrícula real corresponde al nombre del archivo.
+En total, se procesaron todas las imágenes del conjunto mediante el modelo de detección YOLO, encargado de localizar el vehículo y la región de la matrícula dentro de cada imagen.
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/4280KSW_resultado.csv)
+Una vez detectada la matrícula, se aplicaron ambos métodos OCR:
+* **EasyOCR**, que utiliza redes neuronales profundas preentrenadas para el reconocimiento de texto en imágenes.
+* **Tesseract OCR**, un sistema basado en segmentación y reconocimiento óptico de caracteres.
 
-#### Imagen 2
-- Imagen resultante generada
-<div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/0303BML_6225_aug5_resultado.jpg" alt="Imagen 2" width="300">
-</div>
+De cada imagen se extrajo:
+- La matrícula reconocida por EasyOCR
+- La matrícula reconocida por Tesseract
+- La matrícula real (nombre del archivo)
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/0303BML_6225_aug5_resultado.csv)
+Todos estos resultados se guardaron en un archivo CSV.
+Posteriormente, se compararon las matrículas reconocidas con la matrícula real para calcular dos métricas:
+- Exactitud (accuracy): porcentaje de imágenes en las que la matrícula detectada coincide exactamente con la matrícula real.
+- Similitud media: grado de parecido entre el texto reconocido y el texto real, calculado mediante la razón de coincidencia de caracteres.
+
+De este modo, las imágenes sirvieron tanto para entrenar y evaluar la capacidad de detección de las matrículas, como para medir el rendimiento comparativo entre los dos sistemas OCR empleados.
+
+
 
 <a name="tiempos"></a>
 ### ⌛ Diferencia de los tiempos de inferencia
