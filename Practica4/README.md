@@ -413,7 +413,6 @@ df.to_csv("resultados.csv", index=False, sep=";")
 Los resultados obtenidos a partir del video de prueba muestran que ninguno de los modelos de OCR logró identificar las matrículas de manera completa en la mayoría de los vehículos detectados. La principal causa parece estar relacionada con la calidad del video, que presentaba baja resolución, movimiento y condiciones de iluminación desfavorables, dificultando la lectura de los caracteres.
 
 El resultado de ello se puede ver en:  
-#### Vídeo
 - [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/resultado.mp4)
 - [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/resultados.csv)
 
@@ -436,6 +435,8 @@ Posteriormente, se compararon las matrículas reconocidas con la matrícula real
 
 De este modo, las imágenes sirvieron tanto para entrenar y evaluar la capacidad de detección de las matrículas, como para medir el rendimiento comparativo entre los dos sistemas OCR empleados.
 
+Los resultados comparativos se representan en la siguiente gráfica, donde se muestra la exactitud y la similitud media obtenida por cada modelo OCR:
+![Gráfica de precisión OCR](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/precision_ocr.png)
 
 
 <a name="tiempos"></a>
