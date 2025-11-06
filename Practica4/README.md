@@ -441,6 +441,11 @@ Los resultados comparativos se representan en la siguiente gráfica, donde se mu
   <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/precision_ocr.png" alt="Gráfica de precisión OCR" width="50%">
 </p>
 
+| Métrica | EasyOCR | Tesseract |
+|----------|----------|------------|
+| Imágenes procesadas | 60 | 60 |
+| Exactitud (%) | 1.67 | 11.67 |
+| Similitud media (%) | 61.24 | 54.60 |
 
 <a name="tiempos"></a>
 ### ⌛ Diferencia de los tiempos de inferencia
