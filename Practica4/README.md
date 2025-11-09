@@ -95,7 +95,10 @@ El proceso seguido fue el siguiente:
 #### 1. Obtención y preparación del dataset
 Se recopiló un conjunto de imágenes que contuvieran vehículos con matrículas visibles.  
 Este dataset fue creado de forma colaborativa entre los miembros del equipo de la asignatura, garantizando la variedad de condiciones (ángulos, iluminación, tipos de vehículos, etc.).  
-En total, se recopilaron 150 imágenes, que se guardaron en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo), para posteriormente etiquetarlas y, una vez etiquetadas organizarlas siguiendo la estructura de YOLO.
+En total, se recopilaron 150 imágenes, que se guardaron en la carpeta _todo_, para posteriormente etiquetarlas y, una vez etiquetadas organizarlas siguiendo la estructura de YOLO.
+
+Por motivos de espacio y buenas prácticas, la carpeta del dataset (TGC_RBNW/) se ha añadido al archivo .gitignore, por lo que no forma parte del repositorio.
+No obstante, el dataset completo puede consultarse o descargarse desde el siguiente enlace: [Enlace dataset](https://drive.google.com/drive/folders/1vX6mWZiZlpHOmNURqQK7ZL78xI9JnJk9?usp=sharing)
 
 #### 2. Anotación de imágenes
 Para anotar las matrículas dentro de las imágenes se utilizó la herramienta **LabelMe**, que permite dibujar regiones rectangulares alrededor del objeto de interés (la matrícula).  
@@ -114,20 +117,20 @@ Cada imagen anotada genera un archivo `.json` con la información de las regione
 Las imágenes recolectadas se organizaron siguiendo la estructura esperada por **YOLO** para el entrenamiento, validación y prueba del modelo.  
 Cada subconjunto contiene sus respectivas carpetas de imágenes (`images/`) y etiquetas (`labels/`).
 
-<pre>
-📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW">TGC_RBNW/</a>
-├── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train">train/</a>
-│   ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train/images">images/</a>
-│   └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/train/labels">labels/</a>
-├── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val">val/</a>
-│   ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val/images">images/</a>
-│   └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/val/labels">labels/</a>
-└── 📂 <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test">test/</a>
-    ├── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/images">images/</a>
-    └── <a href="https://github.com/lauraheerrera/VC/tree/P4/Practica4/TGC_RBNW/test/labels">labels/</a>
-</pre>
+```
+📂 TGC_RBNW/
+├── 📂 train/
+│   ├── 📂 images/
+│   └── 📂 labels/
+├── 📂 val/
+│   ├── 📂 images/
+│   └── 📂 labels/
+└── 📂 test/
+    ├── 📂 images/
+    └── 📂 labels/
+```
 
-Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta [_todo_](https://github.com/lauraheerrera/VC/tree/P4/Practica4/todo) y las dividió en tres subconjuntos de forma automática:
+Para crear esta estructura, se desarrolló, con ayuda de la IA, un [**script en Python**](https://github.com/lauraheerrera/VC/blob/P4/Practica4//scripts/repartir_imagenes.py) que tomó todas las imágenes y etiquetas almacenadas inicialmente en la carpeta _todo_ y las dividió en tres subconjuntos de forma automática:
 - **80%** del total del dataset se destinó a **entrenamiento y validación**.  
 - **20%** restante se reservó para **pruebas (test)**.  
 - Del **80% inicial**, se dividió de nuevo en:
@@ -409,28 +412,40 @@ df.to_csv("resultados.csv", index=False, sep=";")
 ### 📊 Resultados
 Los resultados obtenidos a partir del video de prueba muestran que ninguno de los modelos de OCR logró identificar las matrículas de manera completa en la mayoría de los vehículos detectados. La principal causa parece estar relacionada con la calidad del video, que presentaba baja resolución, movimiento y condiciones de iluminación desfavorables, dificultando la lectura de los caracteres.
 
-Para evaluar el rendimiento de los modelos de OCR de manera aislada, se realizaron pruebas con imágenes estáticas de matrículas. Se observó que el desempeño es variable según la imagen: en algunas matrículas Tesseract logró detectar parcialmente los caracteres, aunque a veces incluye la “E” inicial de las matrículas europeas, mientras que en otras imágenes EasyOCR obtuvo mejores resultados. Esto confirma que ambos modelos pueden funcionar correctamente bajo condiciones controladas, pero su eficacia depende en gran medida de la calidad y características del material de entrada.
-
 El resultado de ello se puede ver en:  
-#### Vídeo
-- [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultado.mp4)
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados.csv)
+- [Vídeo resultante generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/resultado.mp4)
+- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/csv_resultados/resultados.csv)
 
-#### Imagen 1
-- Imagen resultante generada
-<div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.jpg" alt="Imagen 1" width="300">
-</div>
+Por ello, para medir la precisión de cada modelo OCR (EasyOCR y Tesseract), se ha utilizado un conjunto de imágenes de vehículos en las que la matrícula real corresponde al nombre del archivo.
+En total, se procesaron todas las imágenes del conjunto mediante el modelo de detección YOLO, encargado de localizar el vehículo y la región de la matrícula dentro de cada imagen.
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/4280KSW_resultado.csv)
+Una vez detectada la matrícula, se aplicaron ambos métodos OCR:
+* **EasyOCR**, que utiliza redes neuronales profundas preentrenadas para el reconocimiento de texto en imágenes.
+* **Tesseract OCR**, un sistema basado en segmentación y reconocimiento óptico de caracteres.
 
-#### Imagen 2
-- Imagen resultante generada
-<div align="center">
-  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.jpg" alt="Imagen 2" width="300">
-</div>
+De cada imagen se extrajo:
+- La matrícula reconocida por EasyOCR
+- La matrícula reconocida por Tesseract
+- La matrícula real (nombre del archivo)
 
-- [CSV generado](https://github.com/lauraheerrera/VC/blob/P4/Practica4/0303BML_6225_aug5_resultado.csv)
+Todos estos resultados se guardaron en un archivo CSV.
+Posteriormente, se compararon las matrículas reconocidas con la matrícula real para calcular dos métricas:
+- Exactitud (accuracy): porcentaje de imágenes en las que la matrícula detectada coincide exactamente con la matrícula real.
+- Similitud media: grado de parecido entre el texto reconocido y el texto real, calculado mediante la razón de coincidencia de caracteres.
+
+De este modo, las imágenes sirvieron tanto para entrenar y evaluar la capacidad de detección de las matrículas, como para medir el rendimiento comparativo entre los dos sistemas OCR empleados.
+
+Los resultados comparativos se representan en la siguiente gráfica, donde se muestra la exactitud y la similitud media obtenida por cada modelo OCR:
+
+<p align="center">
+  <img src="https://github.com/lauraheerrera/VC/blob/P4/Practica4/resultados/precision_ocr.png" alt="Gráfica de precisión OCR" width="50%">
+</p>
+
+| Métrica | EasyOCR | Tesseract |
+|----------|----------|------------|
+| Imágenes procesadas | 60 | 60 |
+| Exactitud (%) | 1.67 | 11.67 |
+| Similitud media (%) | 61.24 | 54.60 |
 
 <a name="tiempos"></a>
 ### ⌛ Diferencia de los tiempos de inferencia
