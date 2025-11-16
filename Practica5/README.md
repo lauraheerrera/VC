@@ -17,6 +17,46 @@
 <a name="librerias"></a>
 ## Librerías utilizadas
 
+[![OpenCV](https://img.shields.io/badge/OpenCV-%23007ACC?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)  
+- Librería para procesamiento de imágenes y visión por computadora.  
+- Permite lectura, transformación y visualización de imágenes y video.
+
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-%230077B5?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)  
+- Librería para visualización de datos.  
+- Permite crear gráficos, histogramas y mostrar imágenes de manera interactiva.
+
+[![Imutils](https://img.shields.io/badge/Imutils-%23FF6F61?style=for-the-badge)](https://github.com/jrosebr1/imutils)  
+- Utilidades complementarias para OpenCV.  
+- Facilita la manipulación de imágenes, redimensionado y transformación de coordenadas.
+
+[![MTCNN](https://img.shields.io/badge/MTCNN-%23FF6F00?style=for-the-badge)](https://github.com/ipazc/mtcnn)  
+- Detector de rostros basado en redes neuronales convolucionales.  
+- Permite localizar caras y puntos clave faciales en imágenes.
+
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)  
+- Framework de aprendizaje automático y deep learning.  
+- Permite entrenar y utilizar modelos de redes neuronales, incluyendo extracción de embeddings faciales.
+
+[![DeepFace](https://img.shields.io/badge/DeepFace-%234BBEFB?style=for-the-badge)](https://github.com/serengil/deepface)  
+- Librería para análisis de rostros y biometría facial.  
+- Proporciona modelos preentrenados para extracción de embeddings, reconocimiento de identidad y predicción de edad, género o emociones.
+
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-%23F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)  
+- Librería para machine learning en Python.  
+- Permite entrenar clasificadores, medir métricas de rendimiento y realizar evaluaciones de modelos.
+
+[![Joblib](https://img.shields.io/badge/Joblib-%23E44D26?style=for-the-badge&logo=python&logoColor=white)](https://joblib.readthedocs.io/)  
+- Librería para serializar objetos de Python.  
+- Se utiliza para guardar y cargar modelos entrenados de manera eficiente.
+
+[![NumPy](https://img.shields.io/badge/NumPy-%23013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)  
+- Librería para cálculo numérico y manejo de arrays multidimensionales.  
+- Facilita operaciones matemáticas sobre los embeddings y matrices de datos.
+
+[![Dlib](https://img.shields.io/badge/Dlib-%2300A6ED?style=for-the-badge&logo=dlib&logoColor=white)](http://dlib.net/)  
+- Librería de aprendizaje automático y visión por computadora.  
+- Utilizada principalmente para detección de rostros y alineación facial en datasets.
+
 --- 
 
 La detección y análisis de rostros humanos mediante herramientas como DeepFace permite extraer información biométrica y emocional de manera automática, abriendo posibilidades para aplicaciones interactivas y personalizadas. El objetivo de la práctica es explorar estas capacidades mediante el desarrollo de dos prototipos: uno que utilice un modelo entrenado para la extracción de información biométrica específica, y otro de temática libre que genere reacciones a partir de los datos faciales detectados.
