@@ -108,3 +108,35 @@ A continuación, se muestra un ejemplo de los resultados obtenidos en la consola
 | weighted avg | 0.98      | 0.98   | 0.98     | 1167    |
 
 Los resultados demuestran una precisión superior al 98%, validando que el modelo SVC entrenado sobre los embeddings de ArcFace es un método excelente para esta tarea de clasificación.
+
+
+--- 
+<a name="filtro-2"></a>
+## 🦄 Filtro 2 - Tema libre: Unicornio mágico
+
+El segundo prototipo se centra en un filtro interactivo y divertido que aplica efectos mágicos en tiempo real al detectar el rostro del usuario y la apertura de su boca. Cuando la boca se abre por encima de un umbral, el filtro superpone un **cuerno de unicornio** sobre la frente, un **arcoíris** que sale de la boca y un **fondo rosa translúcido con destellos**.
+
+### 🖥️ Funcionalidad y detección facial
+Para este prototipo se utiliza la librería **OpenCV** para captura y procesamiento de video, junto con utilidades de **imutils** y un detector de rostros personalizado (`FaceDetector`). Se calculan los **landmarks faciales** usando 68 puntos clave, con el fin de determinar:
+- La posición y distancia entre los ojos, utilizada para colocar el cuerno de unicornio.
+- Los puntos internos de la boca, con los que se calcula el **Mouth Aspect Ratio (MAR)** para detectar si la boca está abierta.
+
+Cuando el MAR supera el umbral definido (`MOUTH_AR_THRESH = 0.50`), se activan los efectos mágicos.
+
+### ✨ Efectos aplicados
+1. **Fondo mágico rosa y destellos**: Se genera un fondo translúcido con color rosa y se superponen destellos aleatorios sobre la imagen.
+2. **Cuerno de unicornio**: Se dibuja un cuerno sobre la frente, escalado y centrado según la distancia entre los ojos.
+3. **Arcoíris**: Se dibuja un arcoíris que sale de la boca, ajustando su tamaño y posición según la geometría de la boca.
+
+La superposición de imágenes con transparencia se realiza mediante la función `overlay_transparent`, que maneja correctamente recortes y escalado para evitar errores de desbordamiento fuera de la imagen.
+
+### 💻 Configuración y ejecución
+Para ejecutar el filtro, se requiere tener en la misma carpeta las imágenes de efectos:
+
+- `unicorn_horn.png` (cuerno de unicornio)
+- `rainbow.png` (arcoíris)
+- `sparkles.png` (destellos, con fondo transparente)
+
+Al iniciar el script, se abre la cámara y se muestra el video en tiempo real. Un mensaje guía al usuario para abrir la boca y activar la magia. El filtro continúa hasta que se presiona la tecla `q`.
+
+> Nota: Este prototipo combina técnicas de visión por computadora, geometría facial y superposición de imágenes con transparencia para crear una experiencia interactiva y visualmente atractiva.
