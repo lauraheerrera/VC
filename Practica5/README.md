@@ -103,9 +103,13 @@ El dataset está organizado en dos carpetas que definen las clases: glasses (con
 
 <a name="entrenamiento-f1"></a>
 ### 🏋🏽 Extracción y entrenamiento
-Una vez preparada la muestra de imágenes, el script procede a la extracción de embeddings de los rostros, iterando sobre cada imagen y utilizando `DeepFace.represent` para obtener un embedding representativo de cada rostro; en este proceso se emplea `detector_backend='skip'`, asumiendo que las imágenes ya contienen los rostros recortados, lo que permite acelerar significativamente el procedimiento al omitir la detección facial.
+Una vez preparada la muestra de imágenes, el script procede a la extracción de embeddings de los rostros, iterando sobre cada imagen y utilizando `DeepFace.represent`, que ejecuta un modelo de _deep learning_ preentrenado con **_ArcFace_** para transformar cada rostro en un **vector de características de alta dimensión** (embedding). Este contiene información significativa del patrón facial aprendida por la red neuronal y constituye la representación numérica utilizada posteriormente para el entrenamiento del clasificador.
 
-Posteriormente, los embeddings se dividen en conjuntos de entrenamiento (70%) y prueba (30%) para realizar una evaluación preliminar de la viabilidad del enfoque. Finalmente, se entrena un modelo SVC (Support Vector Classifier) con los embeddings y las etiquetas correspondientes, y tanto el modelo como la lista de clases se guardan en disco mediante `joblib` para su posterior uso en la aplicación del filtro.
+Este proceso se emplea `detector_backend='skip'`, asumiendo que las imágenes ya contienen los rostros recortados, lo que permite acelerar significativamente el procedimiento al omitir la detección facial.
+
+Una vez generados todos los embeddings, estos se convierten en una matriz numérica y se dividen en un conjunto de entrenamiento (70%) y un conjunto de prueba (30%) mediante train_test_split. Esto permite realizar una evaluación preliminar del rendimiento del sistema utilizando un clasificador tradicional.
+
+Finalmente, se entrena un **modelo SVC** (Support Vector Classifier) utilizando los embeddings como entradas y sus etiquetas de clase asociadas. El SVM aprende un hiperplano que separa los vectores correspondientes a cada categoría (glasses / no_glasses) en el espacio de características generado por el modelo profundo. Una vez alcanzado un rendimiento satisfactorio, se entrena el modelo final utilizando la totalidad de los embeddings disponibles y tanto el clasificador SVC como la lista de categorías se guardan en disco mediante `joblib`, quedando listos para su utilización en la aplicación encargada del reconocimiento.
 
 <a name="resultados-f1"></a>
 ### 📊 Resultados de la evaluación
