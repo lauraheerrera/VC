@@ -166,7 +166,7 @@ En conjunto, este filtro demuestra cómo un modelo entrenado con embeddings faci
 <a name="filtro-1-demo"></a>
 #### Visualización del filtro
 <p align="center">
-  <img src="GIF/GIF-2025-11-20-15-50-24.gif" alt="Demo del filtro" width="450">
+  <img src="GIF/Filtro 1.gif" alt="Demo del filtro" width="450">
 </p>
 
 --- 
@@ -211,7 +211,7 @@ Este filtro combina geometría facial, cálculo de MAR y superposición gráfica
 #### Visualización del filtro
 
 <p align="center">
-  <img src="GIF/GIF-2025-11-20-15-53-15.gif" alt="Demo del filtro" width="450">
+  <img src="GIF/Filtro 2.gif" alt="Demo del filtro" width="450">
 </p>
 
 > Nota: Este prototipo combina técnicas de visión por computadora, geometría facial y superposición de imágenes con transparencia para crear una experiencia interactiva y visualmente atractiva.
