@@ -126,6 +126,35 @@ Los resultados demuestran una precisión superior al 98%, validando que el model
 ### Aplicación del filtro
 Esta parte de la práctica consiste en utilizar el modelo previamente entrenado para crear el prototipo funcional. El objetivo es cargar el clasificador SVC guardado (`.pkl`) y usarlo para predecir si un rostro en una nueva imagen (que no estaba en el dataset) lleva gafas o no.
 
+Para ello, el script integra tres componentes principales:
+1. DeepFace, para la detección y extracción de embeddings faciales.
+2. El modelo SVC entrenado, para decidir si el usuario lleva gafas o no.
+3. Un módulo gráfico, que superpone efectos visuales y accesorios virtuales dependiendo de la predicción.
+
+**Flujo general del filtro**
+Cada fotograma capturado por la cámara pasa por las siguientes etapas:
+1. Detección del rostro y extracción de embeddings
+2. Predicción con el modelo SVC
+   Con esto, el filtro decide si el usuario pertenece a la clase:
+   * "glasses" (con gafas)
+   * "no_glasses" (sin gafas)
+3. Obtención de landmarks faciales: Para colocar correctamente los elementos gráficos, se emplea el predictor de 68 puntos faciales de dlib.
+Estos landmarks permiten identificar con precisión la posición de los ojos, la nariz y otras zonas clave necesarias para ajustar los efectos visuales al rostro detectado.
+4. Aplicación de los efectos según la predicción: Una vez determinada la clase, el filtro activa uno de dos comportamientos:
+a) Caso “glasses” (el usuario lleva gafas)
+- Se aplica un tono amarillento a modo de iluminación suave.
+- Se superpone una imagen de un sol en la esquina superior derecha.
+- Se muestra un mensaje humorístico encima del rostro: “CHIQUITA SOLAJA MUCHACHO”.
+b) Caso “no_glasses” (el usuario no lleva gafas)
+- Se calcula la inclinación de la cabeza mediante los ojos, permitiendo rotar la imagen de unas gafas virtuales.
+- Las gafas se escalan según la distancia interocular del usuario para que encajen de forma realista.
+- Se aplican correcciones por yaw (giro lateral de la cabeza) para simular perspectiva.
+- Se muestra un mensaje indicando la ausencia de gafas: “PONTE UNAS GAFAS, COLEGA!”.
+5. Visualización en tiempo real: Los efectos finales se superponen al fotograma original mediante la función `overlay_transparent`, que gestiona imágenes con canal alfa y evita deformaciones o recortes fuera del marco.
+Todo el proceso se repite en cada fotograma hasta que el usuario pulsa la tecla 'q' para finalizar la ejecución.
+
+En conjunto, este filtro demuestra cómo un modelo entrenado con embeddings faciales puede integrarse en un sistema interactivo en tiempo real, combinando biometría, visión por computadora y efectos gráficos.
+
 --- 
 <a name="filtro-2"></a>
 ## 🦄 Filtro 2 - Tema libre: Unicornio mágico
@@ -161,5 +190,7 @@ Para ejecutar el filtro, se requiere tener en la misma carpeta las imágenes de 
 - `sparkles.png` (destellos, con fondo transparente)
 
 Al iniciar el script, se abre la cámara y se muestra el video en tiempo real. Un mensaje guía al usuario para abrir la boca y activar la magia. El filtro continúa hasta que se presiona la tecla `q`.
+
+Este filtro combina geometría facial, cálculo de MAR y superposición gráfica para generar una experiencia lúdica que responde directamente a acciones del usuario.
 
 > Nota: Este prototipo combina técnicas de visión por computadora, geometría facial y superposición de imágenes con transparencia para crear una experiencia interactiva y visualmente atractiva.
