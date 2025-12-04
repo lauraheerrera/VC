@@ -27,6 +27,7 @@ La estructura típica es:
 ├── Practica1/
 │   ├── VC_P1.ipynb       # Notebook con el código y explicación
 │   ├── recursos/             # Imágenes, vídeos y otros archivos necesarios
+│   ├── salidas/              # Outputs del proyecto
 │   └── README.md             # Explicación de la práctica y resultados
 ├── Practica2/
 │   ├── VC_P2.ipynb
@@ -36,6 +37,18 @@ La estructura típica es:
 ├── Practica3/
 │   ├── VC_P3.ipynb
 │   ├── recursos/
+│   ├── salidas/
+│   └── README.md
+├── Practica4/
+│   ├── VC_P4.ipynb
+│   ├── csv_resultados/
+│   ├── resultados/
+│   ├── scripts/
+│   └── README.md
+├── Practica5/
+│   ├── VC_P5.ipynb
+│   ├── GIF/
+│   ├── assets/
 │   └── README.md
 └── README.md                 # Este README general
 
@@ -51,6 +64,7 @@ Por ejemplo:
 - [P2](https://github.com/lauraheerrera/VC/tree/P2): Desarrollo de la Práctica 2
 - [P3](https://github.com/lauraheerrera/VC/tree/P3): Desarrollo de la Práctica 3
 - [P4](https://github.com/lauraheerrera/VC/tree/P4): Desarrollo de la Práctica 4
+- [P5](https://github.com/lauraheerrera/VC/tree/P5): Desarrollo de la Práctica 5
 
 --- 
 ## Prácticas
@@ -58,6 +72,7 @@ Por ejemplo:
 - **Práctica 2:** [Enlace a la Práctica 2](https://github.com/lauraheerrera/VC/tree/main/Practica2)  
 - **Práctica 3:** [Enlace a la Práctica 3](https://github.com/lauraheerrera/VC/tree/main/Practica3) 
 - **Práctica 4:** [Enlace a la Práctica 4](https://github.com/lauraheerrera/VC/tree/main/Practica4)
+- **Práctica 5:** [Enlace a la Práctica 5](https://github.com/lauraheerrera/VC/tree/main/Practica5)
   
 ---
 
